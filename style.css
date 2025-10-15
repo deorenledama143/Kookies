@@ -1,0 +1,8 @@
+.bg-image{
+    background-image: url(Images/nav-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.custom-height{
+    height: 10vh;
+}
