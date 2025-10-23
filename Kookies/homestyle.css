@@ -114,7 +114,7 @@ svg {
 
 /* hero */
 .hero-section {
-    min-height: 98vh;
+    min-height: 100vh;
     background-image: url('Images/home/bakingbg.png');
     background-size: cover;
     background-position: center right;
@@ -123,6 +123,7 @@ svg {
     align-items: center;
     position: relative;
     clip-path: url(#wave-clip-bottom);
+    padding: 20px;
 }   
 
 .hero-section::before {
@@ -146,6 +147,7 @@ svg {
     padding: 30px 0;
     max-width: 600px;
 }
+
 .hero-content h1{
     font-family: 'CustomFont', 'Poppins', sans-serif;
     font-size: 100px;
@@ -160,7 +162,7 @@ svg {
     font-size: 25px;
     font-weight: lighter;
     margin-bottom: 35px;
-    line-height: 1.6;
+    line-height: 2;
 }
 
 .btn-hero {
@@ -169,6 +171,7 @@ svg {
     padding: 15px 40px;
     border-radius: 50px;
     font-weight: bold;
+    letter-spacing: 1px;
   /*  border: 3px solid; */
     font-size: 1.1rem;
     width: fit-content;
@@ -177,7 +180,7 @@ svg {
 }
 
 .btn-hero:hover {
-    background: #ff007f;
+    background: #ff4da6;
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     transform: translateY(-3px);
     color: white;
@@ -187,8 +190,7 @@ svg {
 .bestsellers-sec {
   background: white;
   position: relative;
-  margin-top: -50px;
-  margin-bottom: 50px;
+  margin-top: -80px;
   overflow: visible;
 }
 
@@ -226,13 +228,12 @@ svg {
   height: 350px;
   position: relative;
   box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-  margin-bottom: 50px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 #red:hover {
-    background: #7b2d2c;
+    background: #ad6c69;
 }
 
 #blue:hover {
@@ -302,6 +303,7 @@ svg {
     cursor: pointer;
     width: fit-content;
     transition: all 0.3s;
+    letter-spacing: 1px;
 }
 
 .btn-order:hover {
@@ -372,10 +374,10 @@ svg {
 .why-section {
     min-height: 100vh;
     background: #ffb6d2;
-    padding: 150px 0 100px 0;
-    margin-top: -100px;
+    padding: 110px 0 200px 0;
     position: relative;
     clip-path: url(#wave-clip-top);
+    margin-bottom: 30px;;
 }
 
 .why-section h2 {
@@ -383,7 +385,7 @@ svg {
     font-family: 'CustomFont', 'Poppins', sans-serif;
     color: white;
     margin-bottom: 60px;
-    margin-top: 60px;
+    margin-top: 140px;
     letter-spacing: 2px;
     text-align: center;
 }
@@ -432,32 +434,206 @@ svg {
 .icon-cookie { color: #ecbe80; }
 .icon-heart { color: #ff8fa3; }
 .icon-gift { color: #86cfd7; }
-.icon-location { color: #d4a373; }
+.icon-location { color: #bfa2ff; }
 
-/* ASDFGHJKL*/
-.idk-section {
-    min-height: 100vh;
+/* about us*/
+.about-section {
+    min-height: 80vh;
     background: white;
-    padding: 200px 0 100px 0;
+    padding: 150px 0 50px 0;
     margin-top: -250px;
+    margin-bottom: 150px;
     position: relative;
     clip-path: url(#wave-clip-top);
+    text-align: center;
 }
 
-.idk-section h2 {
+.about-section h2 {
     font-size: 80px;
     font-family: 'CustomFont', 'Poppins', sans-serif;
     text-align: center;
-    color: #ff4da6;
+    color: #ffb6d2;
     margin-bottom: 30px;
     margin-top: 60px;
 }
 
-.idk-section p {
+.about-section p {
     text-align: center;
-    font-size: 1.2rem;
-    color: #666; 
+    font-size: 25px;
+    font-weight: lighter;
     max-width: 800px;
     margin: 0 auto;
-    line-height: 1.8;
+    line-height: 2;
 }
+
+.btn-about {
+    background: #ffb6d2;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    border: 3px solid #ffb6d2; 
+    font-size: 1.1rem;
+    width: fit-content;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 77, 166, 0.4);
+    padding: 15px 40px;
+    margin: 50px 25px;
+}
+
+.btn-about:hover {
+    background: #ffb6d2;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* footer section */
+.footer-section {
+    min-height: 30vh;
+    background: #ffb6d2;
+    padding: 55px 0 10px 0;
+    margin-top: -180px;
+    color: #333;
+}
+
+.footer-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: white
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px; 
+    text-align: left;
+}
+
+.contact-icon { 
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    color: #ff4da6;
+    font-size: 1.5rem;
+}
+
+.contact-info h6 {
+    font-weight: 800;
+    margin-bottom: -2px;
+    font-size: 20px;
+    color: white;
+}
+
+.contact-info p {    
+    font-size: 20px;
+    font-weight: lighter;
+    margin: 0;
+    color: white;
+}
+
+.loc {
+    line-height: 1.3;
+}
+
+.social-btn {    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;    
+    margin-right: 10px;
+}
+
+.social-btn i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.social-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.social-fb {
+    background: #1877f2;
+}
+  /*need to find the correct color code*/
+.social-ig {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.social-x {
+    background: #1da1f2;
+}
+
+.social-tiktok {
+    background: black;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+    margin-top: 10px; 
+    text-align: center;
+    color: white
+}
+
+.footer-bottom a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.footer-bottom a:hover { 
+    color: #ff4da6;
+}
+
+.back-to-top { 
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    color: white;
+    background-color: #ff4da6;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 18px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 77, 166, 0.4);
+    transition: all 0.3s;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #ff007f; 
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 77, 166, 0.6);
+}
+
+.back-to-top i {
+    font-size: 2rem;
+}
+        
