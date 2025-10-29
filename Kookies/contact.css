@@ -1,0 +1,328 @@
+body {
+  background-color: #ffe4ec;
+  font-family: 'Poppins', sans-serif;
+}
+/* Navbar base */
+/* navbar */
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 0.75rem 1rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: #ff007f;
+  gap: 8px;
+}
+
+.navbar-brand img {
+  height: 50px;
+  margin-right: 8px;
+  justify-self: center;
+  align-self: center;
+}
+
+.navbar small {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 800;
+}
+
+.navbar-nav .nav-link {
+  color: #333 !important;
+  font-weight: 600;
+  margin: 0 12px;
+  transition: 0.3s;
+  gap: 25px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background-color: #ffb6d2;
+  border-radius: 10px;
+  color: #ff007f !important;
+}
+
+.search-container {
+  position: relative;
+  margin-right: 10px;
+}
+
+.search-container input {
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding: 6px 15px 6px 35px;
+  font-size: 0.9rem;
+  width: 300px;
+}
+
+.search-container i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  color: #ff007f;
+  margin-left: 8px;
+  position: relative;
+  gap:10px;
+}
+
+.login-btn {
+  background-color: #ff4da6;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 6px 18px;
+  margin-left: 10px;
+}
+
+.login-btn:hover {
+  background-color: #ff007f;
+}
+
+svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+/* Contact Section */
+.contact-section {
+  background-color: #ffe4ec;
+}
+
+.contact-box {
+  background-color: #ffb6c1;
+  border-radius: 15px;
+}
+
+
+
+/* === Center the icon inside the contact "hero" block only ===
+   scoped to the .row.align-items-center wrapper so footer .contact-icon remains unaffected */
+.row.align-items-center > .contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centers children horizontally */
+  text-align: center;
+  gap: 0.9rem;             /* space between heading, icon, and paragraph */
+  padding: 1rem 0;
+}
+
+/* the icon inside that specific contact block */
+.row.align-items-center > .contact-info > .contact-icon {
+  display: inline-flex;    /* let us center the glyph inside a circle */
+  align-items: center;
+  justify-content: center;
+  width: 96px;             /* circle size - adjust if you prefer larger/smaller */
+  height: 96px;
+  border-radius: 50%;
+  background: white;
+  color: #ff4d7d;          /* icon color */
+  font-size: 2.8rem;       /* icon glyph size */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  margin: 0;               /* reset any previous margins */
+}
+
+/* optional: tighten heading / paragraph spacing for this block */
+.row.align-items-center > .contact-info h2 {
+  margin-bottom: 0.25rem;
+}
+
+.row.align-items-center > .contact-info p {
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* responsive: slightly reduce icon size on very small screens */
+@media (max-width: 480px) {
+  .row.align-items-center > .contact-info > .contact-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 2.4rem;
+  }
+}
+
+
+.contact-form input,
+.contact-form textarea {
+  border: 2px solid #82b6ff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.submit-btn {
+  background-color: #ff4da6;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #ff7498;
+}
+
+/* ======= FOOTER ======= */
+.footer-section {
+  background: #ffb6d2;
+  padding: 60px 0 30px;
+  color: white;
+}
+
+/* Headings */
+.footer-heading {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+/* Contact Items */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.contact-icon {
+  width: 45px;
+  height: 45px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.contact-icon i {
+  color: #ff4da6;
+  font-size: 1.5rem;
+}
+
+.contact-info h6 {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  color: white;
+}
+
+.contact-info a {
+  color: white;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  color: #ff4da6;
+}
+
+/* Location paragraph line spacing */
+.loc {
+  line-height: 1.4;
+}
+
+/* Social Buttons */
+.social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-fb {
+  background: #1877f2;
+}
+
+.social-ig {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.social-x {
+  background: #1da1f2;
+}
+
+.social-tiktok {
+  background: black;
+}
+
+.social-btn i {
+  color: white;
+  font-size: 1.4rem;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-bottom a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 12px;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  color: #ff4da6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .contact-item {
+    justify-content: center;
+  }
+
+  .contact-info {
+    text-align: center;
+  }
+
+  .contact-icon {
+    margin-right: 10px;
+  }
+
+  .footer-heading {
+    text-align: center;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
+}

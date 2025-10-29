@@ -1,179 +1,789 @@
-<!DOCTYPE html> <html lang="en"> 
-    <head> <meta charset="UTF-8"> 
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>About | KOOKIE</title>
-          <link rel="icon"  href="Images/cookie.png" />  
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-        <link rel="stylesheet" href="about.css"> </head>
-         <body> <!-- Navbar --> 
-    <!-- Navbar -->
- <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <div>
-        <img src="Images/Logo.png" alt="KOOKIE Logo" width="120">
-          <small>fresh daily • bake with love</small>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About | KOOKIE nh</title>
+    <link rel="icon" href="Images/cookie.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="about.css" />
+    <style>
+        /* ---------- Fonts ---------- */
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('../Kookies/SuperSunday-vn3MA.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+       :root{
+        --pink: #ff007f; /* Primary Accent */
+        --light-pink: #ffb6d2; /* Soft Pink Highlight */
+        --bg: #fffafc; /* Light Pink Background */
+        --panel-bg: #ffffff; /* Panel/Section Background */
+        --muted-rose: #7b3c4f; /* Muted Dark Rose */
+        --dark-text: #381c25; /* Text Color (Darkest) */
+        --secondary-accent: #e75480; /* Deep Pink/Headings */
+        --card-shadow: 0 10px 25px rgba(255,182,193,0.35);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg);
+        /* Change body color to the darker, more accessible rose */
+        color: var(--muted-rose); 
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+    }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            background: url("Images/nav-background.png");
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-brand small {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 700;
+        }
+
+        .navbar-nav .nav-link {
+            color: #333 !important;
+            font-weight: 600;
+            margin: 0 12px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            background-color: var(--light-pink);
+            border-radius: 10px;
+            color: var(--pink) !important;
+        }
+
+        .search-container { position: relative; margin-right: 10px; }
+        .search-container input {
+            border-radius: 20px; border: 1px solid #fff1f4; padding: 6px 15px 6px 35px; font-size: 0.9rem; width: 200px;
+        }
+        .search-container i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #888; }
+        .icon-btn { background: transparent; border: none; font-size: 1.3rem; color: var(--pink); margin-left: 8px; }
+        .login-btn { background-color: #ff4da6; border: none; color: #fff1f4; border-radius: 20px; padding: 6px 18px; margin-left: 10px; }
+        .login-btn:hover { background-color: var(--pink); }
+
+        /* ---------- INFO BOXES ---------- */
+        .info-box { background: #fff1f4; border: 2px solid var(--light-pink); transition: transform .3s ease, box-shadow .3s ease; }
+        .info-box:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(255,182,193,0.5); }
+
+        /* ---------- TEAM CAROUSEL (UPDATED STYLES) ---------- */
+        .team {
+            background-color: #fff1f4;
+            padding: 60px 0;
+        }
+        .text-pink { color: var(--pink); font-weight:700; }
+
+        /* carousel outer mask */
+        .carousel-mask {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 30px 0;
+        }
+
+        /* the track that will be duplicated to loop */
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            white-space: nowrap;
+            will-change: transform;
+            padding: 10px 0;
+        }
+
+        /* each member card */
+        .member {
+            width: 240px;
+            min-width: 240px;
+            height: 360px;
+            position: relative;
+            transition: transform .32s cubic-bezier(.2,.9,.2,1), filter .3s;
+            transform-origin: center bottom;
+            cursor: pointer; /* clickable cursor */
+        }
+
+        /* Removed 3D transform logic, now a simple card */
+        .card-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            background: #fff1f4;
+            overflow: hidden;
+        }
+
+        /* front face (always visible) */
+        .face.front {
+            display:flex; flex-direction:column; align-items:center; justify-content:center; padding:18px;
+            background:linear-gradient(180deg, #fff1f4 0%, rgba(255,220,229,0.98) 100%);
+            transition: opacity 0.3s ease;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2; /* always on top unless hovered */
+        }
+        .face.front img {
+            width: 120px; /* Wider for portrait aspect */
+            height: 160px; /* Taller for portrait aspect */
+            border-radius: 8px; /* Square/Rectangular photos */
+            object-fit: cover;
+            border: 3px solid var(--light-pink);
+            margin-bottom: 12px;
+            transition: transform .3s;
+        }
+        .face.front h3 { color:#e75480; font-size:25px; margin-bottom:4px; font-family: 'CustomFont'; }
+        .face.front p { color:#555; font-size:.9rem; margin:0; }
+
+        /* back face (hover overlay) */
+        .face.back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: rgba(255,220,229,0.98); /* Near-opaque overlay */
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255,182,193,0.28);
+            padding: 16px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #333;
+            opacity: 0; /* Hidden by default */
+            transition: opacity .3s ease;
+            z-index: 3; /* Overlay on top of front content */
+        }
+        .face.back h4 { color:#ff007f; font-weight:600; margin-bottom:8px; }
+        .face.back p { font-size:.85rem; margin-bottom:6px; line-height:1.3rem; }
+
+        /* ** NEW: Hover effect to show info ** */
+        .member:hover .face.back {
+            opacity: 1; /* Make the overlay visible */
+        }
+      
+        /* center item styling — lifted, slightly larger and glow */
+        .member.is-center {
+            transform: translateY(-14px) scale(1.06);
+            z-index: 30;
+            filter: drop-shadow(0 18px 30px rgba(255, 130, 170, .12));
+        }
+        .member.is-center .card-container { box-shadow: 0 18px 40px rgba(255,120,160,.18); }
+
+        /* carousel controls */
+        .carousel-controls {
+            display:flex; gap:12px; justify-content:center; margin-top:18px;
+        }
+        .carousel-controls .btn { border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; }
+
+        /* responsive */
+        @media (max-width: 992px) {
+            .member { width: 210px; min-width:210px; height:320px; }
+        }
+        @media (max-width: 600px) {
+            .member { width: 180px; min-width:180px; height:300px; }
+            .carousel-controls { display:none; }
+        }
+
+        /* ---------- TIMELINE (Minor visual adjustments) ---------- */
+    /* ---------- ENHANCED TIMELINE DESIGN ---------- */
+.timeline-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #fff1f4 0%, #f8d5ed 100%);
+}
+
+.timeline-wrapper {
+        padding-top: 20px; /* reduce internal padding */
+    padding-bottom: 20px;
+    position: relative;
+    border-radius: 20px;
+    padding: 60px 40px;
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    background: #fff1f4;
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.25);
+}
+
+.timeline-header h2 {
+    color: var(--pink);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}.timeline-node {
+    margin: 0; 
+    width: 380px;
+    position: relative;
+}
+
+/* Optional: Add smaller vertical spacing between nodes */
+.timeline-node + .timeline-node {
+    margin-top: 60px; /* adjust spacing to taste */
+}
+
+.timeline-track {
+        margin: 0 auto; 
+    height: 100%; 
+    position: relative;
+    width: 6px;
+        justify-content: space-between;
+    background: linear-gradient(180deg, var(--light-pink), var(--pink));
+    margin: 0 auto; 
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 140, 170, 0.25);
+}
+
+/* Node container */
+.timeline-node {
+    position: relative;
+    width: 380px;
+    background: linear-gradient(145deg, #fff1f4, #f8d5ed);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 50px 0;
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.18);
+    transition: all 0.3s ease;
+}
+
+/* Date pill */
+.timeline-node .date {
+    display: inline-block;
+    background: var(--pink);
+    color: #fff1f4;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 30px;
+    box-shadow: 0 3px 6px rgba(255, 100, 150, 0.3);
+    margin-bottom: 10px;
+}
+/* First Node (Sep 17: Kickoff & Project Planning) */
+.timeline-node:first-child {
+    /* Reduce top margin to pull the node up to the top of the track */
+    margin-top: 0; 
+}
+
+/* Last Node (Nov 05: Deployment) */
+.timeline-node:last-child {
+    /* Reduce bottom margin to pull the node down to the bottom of the track */
+    margin-bottom: 0; 
+}
+
+.timeline-node .date small {
+    color: #ffeaf3;
+    font-weight: 400;
+}
+
+.timeline-node .title {
+    font-weight: 700;
+    color: var(--pink);
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.timeline-node .summary {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+}
+
+/* Odd/even placement */
+.timeline-node:nth-child(odd) {
+    left: calc(50% + 70px);
+    background: linear-gradient(145deg, #fff, #fff1f6);
+}
+.timeline-node:nth-child(even) {
+    left: calc(50% - 450px);
+    background: linear-gradient(145deg, #fff, #fef0f4);
+}
+
+/* Connector dots */
+.timeline-node::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: var(--pink);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px var(--light-pink);
+}
+
+.timeline-node:nth-child(odd)::before {
+    left: -52px;
+}
+.timeline-node:nth-child(even)::before {
+    right: -52px;
+}
+
+/* Hover & active states */
+.timeline-node:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(255, 130, 170, 0.25);
+}
+
+.timeline-node.active {
+    border: 2px solid var(--pink);
+    box-shadow: 0 14px 30px rgba(255, 90, 140, 0.35);
+    transform: scale(1.04);
+}.timeline-detail {
+    max-width: 700px;
+    margin: 30px auto 0;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.5rem;
+}
+.timeline-detail h5 {
+    color: var(--pink);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+h1, h2, h3 {
+    color: #ff007f;
+}
+
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .timeline-node {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    .timeline-node::before {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .timeline-track {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* --- THE FIX IS HERE --- */
+.about-section {
+    /* Existing styles from your HTML/CSS */
+    padding-bottom: 5rem !important; 
+    background-color: var(--bg); 
+    position: relative; 
+    /* Add a subtle, large, diffused pink shadow only at the bottom edge */
+    box-shadow: 0 15px 15px -10px rgba(255, 182, 193, 0.45) inset;
+    /* 1. BORDER REMOVED FROM SECTION */
+}
+
+/* 2. BORDER APPLIED TO INNER CONTAINER */
+.about-section > .container {
+    border-bottom: 1px solid var(--pink); 
+    padding-bottom: 2rem !important; /* Optional: adds space between content and line */
+}
+/* ------------------------ */
+
+.timeline-detail {
+    display: none; /* This will hide the detail box by default */
+    /* All other existing styles for .timeline-detail should remain */
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="d-flex flex-column align-items-start">
+                    <img src="Images/Logo.png" alt="KOOKIE Logo" width="120">
+                    <small>fresh daily • bake with love</small>
+                </div>
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="home.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="index.html">SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold active" href="#">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <div class="search-container">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search cookies" />
+                </div>
+                <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                <button class="icon-btn position-relative"><i class="bi bi-cart"></i></button>
+                <button class="login-btn">Login</button>
+            </div>
         </div>
-      </a>
+    </nav>
 
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <section class="about-section py-5">
+        <div class="container text-center">
+            <h2 style="
+            font-family: 'CustomFont'; font-size: 70px;
+            " class="fw-bold mb-4">ABOUT KOOKIE</h2>
+            <p class="lead mb-5">KOOKIE is a student-built e-commerce project that celebrates the joy of homemade cookies. Every click should feel as warm as every bite — blending thoughtful design, clean code, and a sprinkle of creativity.</p>
 
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-          <li class="nav-item"><a class="nav-link fw-bold" href="home.html">HOME</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="index.html">SHOP</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold active" href="#">ABOUT</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="#">CONTACT</a></li>
-        </ul>
-      </div>
-
-      <div class="d-flex align-items-center">
-        <div class="search-container">
-          <i class="bi bi-search"></i>
-          <input type="text" placeholder="Search cookies" />
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5">
+                    <div class="info-box shadow-sm p-4 rounded-4">
+                        <h4 style="
+            font-family: 'CustomFont';color:#ff007f; 
+            " class="fw-bold">Our Mission</h4>
+                        <p>To make every moment sweeter by delivering freshly baked cookies made with care, accessible, simple, and full of warmth.</p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="info-box shadow-sm p-4 rounded-4">
+                        <h4 style="
+            font-family: 'CustomFont';color:#ff007f 
+            " class="fw-bold">Our Vision</h4>
+                        <p>To become the go-to online cookie shop where every customer feels the love of small-batch baking and fast, friendly service.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="icon-btn"><i class="bi bi-heart"></i></button>
-        <button class="icon-btn position-relative"><i class="bi bi-cart"></i></button>
-        <button class="login-btn">Login</button>
-      </div>
+    </section>
+
+    <section class="team py-5">
+        <div class="container text-center">
+            <h2 style="
+            font-family: 'CustomFont';
+            font-family: 'CustomFont';color:#ff007f;font-size: 70px; padding-bottom: 20px;
+            " class="fw-bold mb-1 text-pink">Meet the Doughminators</h2>
+            <p style="color: #6b2b3b; font-family: 'Poppins', sans-serif; font-size: 20px; padding-bottom: 20px;">They knead ideas, not just dough. Blending creativity, passion, and a pinch of sugar to make KOOKIE as sweet as it is smart.</p>
+
+            <div class="carousel-mask" id="teamCarouselMask" aria-hidden="false">
+                <div class="carousel-track" id="carouselTrack" aria-live="off">
+                    <div class="member" data-name="Elaiza Mae Niez">
+                        <div class="card-container">
+                            <div class="face front">
+                                <img src="Images/lai.png" alt="Elaiza Mae Niez" onerror="this.src='Images/default.png';">
+                                <h3 style="color: #ff007f;">Elaiza Mae Niez</h3>
+                                <p>About Page Developer</p>
+                            </div>
+                            <div class="face back">
+                                <h4>About Elai</h4>
+                                <p>" love to code but get lazy most of </p>
+                                <p> the time. I enjoy solving problems</p>
+                                <p>logically and building intuitive page </p>
+                                    <p>layouts."</p>
+                                <p><strong>Skills:</strong> Responsive Design</p>
+                                <p><strong>Hobbies:</strong> Casual baking</p>
+                                <p><strong>Email:</strong> niezactelaizamae@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="member" data-name="Ken Jorique">
+                        <div class="card-container">
+                            <div class="face front">
+                                <img src="Images/ken.png" alt="Ken Jorique" onerror="this.src='Images/default.png';">
+                                <h3 style="color: #ff007f;">Ken Jorique</h3>
+                                <p>Contact Page Developer</p>
+                            </div>
+                            <div class="face back">
+                                <h4>About Ken</h4>
+                                <p> A creative developer focused on</p>
+                                <p> 	UI and smooth user interaction.</p>
+                                <p><strong>Skills:</strong>JavaScript, UI Design</p>
+                                <p><strong>Hobbies:</strong> Listening to music</p>
+                                <p><strong>Email:</strong> kenjorique@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="member" data-name="Deoren Ledama">
+                        <div class="card-container">
+                            <div class="face front">
+                                <img src="Images/ren.png" alt="Deoren Ledama" onerror="this.src='Images/default.png';">
+                                <h3 style="color: #ff007f;">Deoren Ledama</h3>
+                                <p>Products Page Developer</p>
+                            </div>
+                            <div class="face back">
+                                <h4>About Deoren</h4>
+                                <p>Keeps product listings organized</p>
+                                <p>and user-friendly for smooth</p>
+                                <p>browsing.</p>
+                                <p><strong>Skills:</strong> JS, Bootstrap</p>
+                                <p><strong>Hobbies:</strong> Gaming, photography</p>
+                                <p><strong>Email:</strong> deorenledama@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="member" data-name="James Ryan A. Labra">
+                        <div class="card-container">
+                            <div class="face front">
+                                <img src="Images/jam.png" alt="James Ryan A. Labra" onerror="this.src='Images/default.png';">
+                                <h3 style="color: #ff007f;">James Ryan Labra</h3>
+                                <p>Cart Page Developer</p>
+                            </div>
+                            <div class="face back">
+                                <h4>About James</h4>
+                                <p>Builds smooth checkout flows and </p> 
+                                <p> reliable cart systems for users.</p>
+                                <p><strong>Skills:</strong> HTML, CSS, JavaScript</p>
+                                <p><strong>Hobbies:</strong> Watching anime, web design</p>
+                                <p><strong>Email:</strong> jameslabra@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="member" data-name="AI Advisor">
+                        <div class="card-container">
+                            <div class="face front">
+                                <img src="Images/ai.png" alt="AI Technical Advisor" onerror="this.src='Images/default.png';">
+                                <h3 style="color: #ff007f;">AI 	Advisor</h3>
+                                <p>Supervisor</p>
+                            </div>
+                            <div class="face back">
+                                <h4>About AI</h4>
+                                <p>Provides technical guidance and </p>
+                                <p>creative feedback to help </p>
+                                <p>KOOKIE grow.</p>
+                                <p><strong>Skills:</strong> Problem Solving</p>
+                                <p><strong>Hobbies:</strong> Helping developers 🍪</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="member" data-name="Leah Marie Bolasco">
+                        <div class="card-container">
+                            <div class="face front">
+                                <img src="Images/ley.png" alt="Leah Marie Bolasco" onerror="this.src='Images/default.png';">
+                                <h3 style="color: #ff007f;">Leah Marie Bolasco</h3>
+                                <p>Home Page Developer</p>
+                            </div>
+                            <div class="face back">
+                                <h4>About Leah</h4>
+                                <p>Ensures design cohesion and create</p>
+                                <p> visually delightful user experiences.</p>
+                                <p><strong>Skills:</strong> HTML, Layout Design</p>
+                                <p><strong>Hobbies:</strong> Drawing, journaling</p>
+                                <p><strong>Email:</strong> leahbolasco@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+            </div>
+
+        
+        </div>
+    </section>
+<section class="timeline-section">
+    <div class="container">
+        <div class="timeline-wrapper">
+            <div class="timeline-header">
+                <h2 style="font-family: 'CustomFont'; font-size: 70px; ">Our Development Journey</h2>
+                <p class="lead text-muted-rose" style="max-width: 1000px; margin: auto auto; text-align: center;padding-bottom: 50px; ">
+                    This timeline illustrates the <span style="font-weight: bold;">key phases and milestones </span>of the KOOKIE e-commerce project, from initial concept to final deployment. It represents our commitment to a structured and iterative development process.
+                </p>
+            </div>
+
+            <div class="timeline-track" id="timelineTrack"></div>
+
+            <div id="timelineDetail" class="timeline-detail mt-4 p-4 rounded-3" 
+                style="background:#fff8fb; border:1px solid rgba(255,182,193,0.4); box-shadow:0 6px 18px rgba(255,182,193,0.2);">
+                <p class="text-center text-muted">Click a milestone to see details...</p>
+            </div>
+        </div>
     </div>
-  </nav>
- <!-- About Section --> 
-  <section class="about-section py-5"> 
-    <div class="container text-center"> 
-      <h2 class="fw-bold mb-4">About KOOKIE</h2> 
-      <p class="lead mb-5">KOOKIE is a student-built e-commerce project that celebrates the joy of homemade cookies. Every click should feel as warm as every bite — blending thoughtful design, clean code, and a sprinkle of creativity.</p>
-  <div class="row g-4 justify-content-center">
-    <div class="col-md-5">
-      <div class="info-box shadow-sm p-4 rounded-4">
-        <h4 class="fw-bold">Our Mission</h4>
-        <p>To make every moment sweeter by delivering freshly baked cookies made with care, accessible, simple, and full of warmth.</p>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="info-box shadow-sm p-4 rounded-4">
-        <h4 class="fw-bold">Our Vision</h4>
-        <p>To become the go-to online cookie shop where every customer feels the love of small-batch baking and fast, friendly service.</p>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
-</section> <!-- Meet the Team --> <section class="team-section py-5 bg-light-pink"> <div class="container text-center"> <h2 class="fw-bold mb-5">Meet the Team</h2> <div class="row g-4 justify-content-center">
-    <!-- Team Member Card Template -->
-    <div class="col-md-4 col-lg-3">
-      <div class="card-flip">
-        <div class="card front shadow-sm">
-          <img src="images/lai.PNG" class="card-img-top" alt="Elai">
-          <div class="card-body">
-            <h5 class="card-title">Elaisa Mae Nie</h5>
-            <p class="text-muted">Front-end Developer</p>
-          </div>
-        </div>
-        <div class="card back shadow-sm p-3">
-          <h6>About Elai</h6>
-          <p>“I have both quiet and lazy mood for time, tackling coding gently.”</p>
-          <p><strong>Skills:</strong> HTML, CSS, Responsive Design</p>
-          <p><strong>Hobbies:</strong> Writing, BTS, Cookie tasting</p>
-        </div>
-      </div>
-    </div>
 
-    <!-- Repeat for other members -->
-    <div class="col-md-4 col-lg-3">
-      <div class="card-flip">
-        <div class="card front shadow-sm">
-          <img src="images/ken.PNG" class="card-img-top" alt="Member 2">
-          <div class="card-body">
-            <h5 class="card-title">Alex Cruz</h5>
-            <p class="text-muted">UI/UX Designer</p>
-          </div>
-        </div>
-        <div class="card back shadow-sm p-3">
-          <h6>About Alex</h6>
-          <p>“Design is not just what it looks like — it's how it works.”</p>
-          <p><strong>Skills:</strong> Figma, UX Prototyping, HTML</p>
-          <p><strong>Hobbies:</strong> Digital art, journaling</p>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-4 col-lg-3">
-      <div class="card-flip">
-        <div class="card front shadow-sm">
-          <img src="images/jam.png" class="card-img-top" alt="Member 3">
-          <div class="card-body">
-            <h5 class="card-title">Jem Ramos</h5>
-            <p class="text-muted">Back-end Developer</p>
-          </div>
-        </div>
-        <div class="card back shadow-sm p-3">
-          <h6>About Jem</h6>
-          <p>“I bake cookies with code — sweet, structured, and secure.”</p>
-          <p><strong>Skills:</strong> Node.js, PHP, SQL</p>
-          <p><strong>Hobbies:</strong> Gaming, baking, tech tinkering</p>
-        </div>
-      </div>
-    </div>
+    <footer class="footer text-center py-3 bg-pink shadow-sm mt-5">
+        <p class="mb-0 small">&copy; 2025 KOOKIE | Built by KOOKIE Studio</p>
+    </footer>
 
-    <div class="col-md-4 col-lg-3">
-      <div class="card-flip">
-        <div class="card front shadow-sm">
-          <img src="images/member4.jpg" class="card-img-top" alt="Member 4">
-          <div class="card-body">
-            <h5 class="card-title">Mara Dela Peña</h5>
-            <p class="text-muted">Project Manager</p>
-          </div>
-        </div>
-        <div class="card back shadow-sm p-3">
-          <h6>About Mara</h6>
-          <p>“Leading with purpose and cookies in hand.”</p>
-          <p><strong>Skills:</strong> Agile, Communication, Planning</p>
-          <p><strong>Hobbies:</strong> Travel, journaling, coffee tasting</p>
-        </div>
-      </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/***********************************************************************
+ * TEAM CAROUSEL LOGIC
+ ***********************************************************************/
+document.addEventListener("DOMContentLoaded", () => {
+    const mask = document.getElementById("teamCarouselMask");
+    const track = document.getElementById("carouselTrack");
 
-    <div class="col-md-4 col-lg-3">
-      <div class="card-flip">
-        <div class="card front shadow-sm">
-          <img src="images/member5.jpg" class="card-img-top" alt="Member 5">
-          <div class="card-body">
-            <h5 class="card-title">Kaye Santos</h5>
-            <p class="text-muted">Marketing</p>
-          </div>
-        </div>
-        <div class="card back shadow-sm p-3">
-          <h6>About Kaye</h6>
-          <p>“Cookies make people smile — marketing makes it happen.”</p>
-          <p><strong>Skills:</strong> Social Media, Branding</p>
-          <p><strong>Hobbies:</strong> Photography, baking</p>
-        </div>
-      </div>
-    </div>
+    if (!mask || !track) return;
 
-    <div class="col-md-4 col-lg-3">
-      <div class="card-flip">
-        <div class="card front shadow-sm">
-          <img src="images/member6.jpg" class="card-img-top" alt="Member 6">
-          <div class="card-body">
-            <h5 class="card-title">AI (You!)</h5>
-            <p class="text-muted">Creative Support</p>
-          </div>
-        </div>
-        <div class="card back shadow-sm p-3">
-          <h6>About AI</h6>
-          <p>“Helping KOOKIE grow with smart creativity and good vibes.”</p>
-          <p><strong>Skills:</strong> Design logic, Copywriting, Code assist</p>
-          <p><strong>Hobbies:</strong> Inspiring humans ❤️</p>
-        </div>
-      </div>
-    </div>
+    // duplicate children to allow continuous looping
+    function duplicateTrack() {
+        const items = Array.from(track.children);
+        items.forEach((node) => {
+            const clone = node.cloneNode(true);
+            track.appendChild(clone);
+        });
+    }
+    duplicateTrack();
 
-  </div>
-</div>
+    let speed = 0.9;
+    let running = true;
+    let rafId = null;
 
-</section> <footer class="footer text-center py-3 bg-pink shadow-sm mt-5"> <p class="mb-0 small">&copy; 2025 KOOKIE | Built by KOOKIE Studio</p> </footer> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <script src="about.js"></script> </body> </html>
+    function getResetWidth() {
+        const half = track.children.length / 2;
+        let w = 0;
+        for (let i = 0; i < half; i++)
+            w +=
+                track.children[i].offsetWidth +
+                parseFloat(getComputedStyle(track).gap || 30);
+        return w;
+    }
+
+    function updateCenterClass() {
+        const maskRect = mask.getBoundingClientRect();
+        const maskCenterX = maskRect.left + maskRect.width / 2;
+        let closest = null;
+        let closestDist = Infinity;
+        Array.from(track.children).forEach((child) => {
+            const rect = child.getBoundingClientRect();
+            const childCenter = rect.left + rect.width / 2;
+            const dist = Math.abs(childCenter - maskCenterX);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closest = child;
+            }
+        });
+        Array.from(track.children).forEach((c) => c.classList.remove("is-center"));
+        if (closest) closest.classList.add("is-center");
+    }
+
+    function startScroll() {
+        const resetWidth = getResetWidth();
+        function step() {
+            if (!running) {
+                rafId = null;
+                return;
+            }
+            const current = track._pos || 0;
+            const next = current - speed;
+            track._pos = next;
+
+            if (Math.abs(track._pos) >= resetWidth) {
+                track._pos += resetWidth;
+            }
+            track.style.transform = `translateX(${track._pos}px)`;
+            updateCenterClass();
+            rafId = requestAnimationFrame(step);
+        }
+        if (!rafId) rafId = requestAnimationFrame(step);
+    }
+
+    function stopScroll() {
+        running = false;
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+    }
+
+    running = true;
+    startScroll();
+
+    // Pause on hover
+    mask.addEventListener("mouseenter", () => {
+        running = false;
+        stopScroll();
+    });
+    mask.addEventListener("mouseleave", () => {
+        running = true;
+        startScroll();
+    });
+
+    
+    window.addEventListener("resize", () => {
+        track._pos = track._pos || 0;
+        updateCenterClass();
+    });
+
+    window.addEventListener("load", () => setTimeout(updateCenterClass, 200));
+});
+
+/***********************************************************************
+ * TIMELINE LOGIC
+ ***********************************************************************/
+document.addEventListener("DOMContentLoaded", () => {
+    const events = [
+        { date: "2025-09-17", shortDate: "Sep 17", title: "Kickoff & Project Planning", summary: "Team setup, goal alignment, and defining project structure.", details: `Held first group meeting to discuss project scope, assign roles (Home, Shop, Cart, Contact, About), and establish tools (GitHub, Bootstrap, VS Code). Created initial repo and team Trello board.` },
+        { date: "2025-09-19", shortDate: "Sep 19", title: "Brand Identity & Naming", summary: "Finalized KOOKIE brand and visual direction.", details: `Chose the brand name "KOOKIE" to reflect warmth and playfulness. Discussed cookie mascot ideas, color palette, and typefaces. Drafted initial logo sketches.` },
+        { date: "2025-09-22", shortDate: "Sep 22", title: "Logo & Moodboard Finalization", summary: "Refined branding visuals and mood inspiration.", details: `Created final pink and cream color palette, completed favicon (cookie icon), and uploaded assets to shared folder. Defined visual tone for layouts and illustrations.` },
+        { date: "2025-09-24", shortDate: "Sep 24", title: "Wireframing: Homepage & Shop", summary: "Created low-fidelity wireframes for major pages.", details: `Sketched homepage hero layout, product grid, and navigation flow. Ensured responsive scaling for mobile and desktop. Feedback session held to refine layout ideas.` },
+        { date: "2025-09-27", shortDate: "Sep 27", title: "Wireframing: Cart & About Pages", summary: "Completed wireframes for supporting pages.", details: `Finalized Cart, About, and Contact page structures. Added placeholders for images and text. Decided on 5-member team section for About page.` },
+        { date: "2025-09-30", shortDate: "Sep 30", title: "Prototype Setup", summary: "Initialized HTML and CSS base templates.", details: `Created shared header/footer components, Bootstrap links, and folder structure (Images, CSS, JS). Imported Google Fonts and base color variables.` },
+        { date: "2025-10-02", shortDate: "Oct 02", title: "Homepage Development", summary: "Started coding homepage prototype.", details: `Built homepage hero section, product highlights, and navigation links. Implemented sticky navbar and responsive container layouts.` },
+        { date: "2025-10-04", shortDate: "Oct 04", title: "About Page Structure", summary: "Laid out About and Mission sections.", details: `Created mission/vision info boxes and started working on “Meet the Team” structure. Added placeholder cards and hover transitions.` },
+        { date: "2025-10-07", shortDate: "Oct 07", title: "Shop Page Product Layout", summary: "Built product listing grid and filters.", details: `Added cookie product cards with images, names, and prices. Used Bootstrap grid for responsive layout and hover effects.` },
+        { date: "2025-10-09", shortDate: "Oct 09", title: "Cart & Checkout Mockup", summary: "Coded static cart and order summary section.", details: `Implemented quantity controls and subtotal calculations (non-functional yet). Styled checkout button and ensured consistent padding.` },
+        { date: "2025-10-11", shortDate: "Oct 11", title: "Interactive Elements Integration", summary: "Added carousel, hover effects, and search input behavior.", details: `Set up About page team carousel animation. Added smooth scroll and hover-over backface info for each member card.` },
+        { date: "2025-10-14", shortDate: "Oct 14", title: "JavaScript Functionality", summary: "Started JS integration for cart and search logic.", details: `Implemented basic “Add to Cart” and “Search Products” features. Connected event listeners for interactive UI components.` },
+        { date: "2025-10-16", shortDate: "Oct 16", title: "Styling Polish & Responsiveness", summary: "Refined color, spacing, and device responsiveness.", details: `Fixed padding/margin inconsistencies, tested layout on mobile and tablet. Tweaked navbar collapse and image aspect ratios.` },
+        { date: "2025-10-18", shortDate: "Oct 18", title: "Content Writing & Copy Review", summary: "Finalized brand messaging and product descriptions.", details: `Wrote engaging copy for About page, mission/vision, and cookie products. Ensured friendly, student-brand tone across all pages.` },
+        { date: "2025-10-21", shortDate: "Oct 21", title: "Accessibility & SEO Audit", summary: "Improved usability and page semantics.", details: `Added aria labels, improved color contrast, alt text for images, and descriptive meta tags for better search visibility.` },
+        { date: "2025-10-23", shortDate: "Oct 23", title: "Code Review & Bug Fixes", summary: "Tested all pages and fixed layout and logic issues.", details: `Team reviewed each page’s layout and logic. Fixed carousel overflow, navbar link hover states, and JS console errors.` },
+        { date: "2025-10-25", shortDate: "Oct 25", title: "Final Styling & Animations", summary: "Added finishing touches to animations and hover details.", details: `Enhanced card shadows, hover transitions, and subtle scroll animations. Finalized team card flip overlay design.` },
+    ]
+
+    const timelineTrack = document.getElementById('timelineTrack');
+    const timelineDetail = document.getElementById('timelineDetail');
+
+    function renderTimeline() {
+        // Clear previous content
+        timelineTrack.innerHTML = '';
+
+        events.forEach((event, index) => {
+            const node = document.createElement('div');
+            node.className = 'timeline-node';
+            node.innerHTML = `
+                <span class="date">${event.shortDate}</span>
+                <div class="title">${event.title}</div>
+                <div class="summary">${event.summary}</div>
+            `;
+            
+            // Add click listener to show details
+            node.addEventListener('click', () => {
+                // Remove active class from all nodes
+                document.querySelectorAll('.timeline-node').forEach(n => n.classList.remove('active'));
+                
+                // Add active class to the clicked node
+                node.classList.add('active');
+                
+                // Update detail box
+                timelineDetail.innerHTML = `
+                    <h5 class="text-center">${event.title} - ${event.shortDate}</h5>
+                    <p>${event.details}</p>
+                `;
+                timelineDetail.style.display = 'block';
+                timelineDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            timelineTrack.appendChild(node);
+        });
+    }
+
+    renderTimeline();
+});
+
+</script>
+</body>
+</html>
