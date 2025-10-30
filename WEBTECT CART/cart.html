@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kookie Cart</title>
+
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="cart.css">
+
+  <!-- Poppins font (same as Figma) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  
+  <!-- Page background + centered wrapper -->
+  <div class="page-wrapper">
+
+    <!-- Header card -->
+    <header class="cart-header">
+      <div class="header-inner">
+
+        <!-- Left area: back button + logo + title -->
+        <div class="left-area">
+          <button class="back-btn"  aria-label="Go back">
+            <img src="images/Back.png" alt="Back" class="icon-img">
+          </button>
+
+          <img src="images/kookie logo.png" alt="Kookie logo" class="logo-img">
+
+          <span class="vertical-divider" aria-hidden="true"></span>
+
+          <div class="title-block">
+            <div class="page-title">Kookie Cart</div>
+          </div>
+        </div>
+
+        <!-- Right area: search -->
+        <div class="right-area">
+          <div class="search-pill" role="search">
+            <input type="search" id="productSearch" placeholder="Search products">
+            <button  id="searchBtn" type="button" class="search-btn" aria-label="Search">
+              <img src="images/search.png" alt="Search"  class="search-icon">
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- CART CONTENT -->
+    <main class="cart-content">
+
+    <!-- LABEL ROW -->
+    <section class="label-row">
+      <div class="label-inner">
+        <div class="label-product">
+          <img src="images/store.png" alt="Shop Icon" class="shop-icon">
+          <span class="label-title">Kookie</span>
+          <img src="images/visit.png" alt="Arrow" class="arrow-icon">
+        </div>
+
+        <div class="label-quantity">Quantity</div>
+        <div class="label-total">Total Price</div>
+        <div class="label-actions">Actions</div>
+      </div>
+    </section>
+
+    <!-- ORDER LIST -->
+    <div class="order-list">
+     
+      <section class="order-row">
+        <div class="order-inner">
+          <div class="order-select">
+            <input type="checkbox" class="item-checkbox">
+          </div>
+
+          <div class="order-product">
+            <img src="images/oreo 1.png" alt="Kookie Product" class="product-img">
+            <div class="product-info">
+             
+              <label class="variation-label">Variations:</label>
+              
+              <select class="variation-dropdown">
+                <option>Brk Cookie</option>
+                <option>Churro Cookie</option>
+                <option>Galaxy Cookie</option>
+                <option>Ice Cream Cookie</option>
+                <option>Milk & Cookies</option>
+                <option>Monday Blue</option>
+                <option>Oreo-stuffed</option>
+                <option>White Chocolate</option>
+                <option>Red Cookie</option>
+                <option>Raspberry Cookie</option>
+                <option>Biscoff Cookie</option>
+                <option>Dark Chocolate</option>
+                <option>Assorted Cookie (4pcs)</option>
+                <option>Assorted Cookie (6pcs)</option>
+              </select>
+              
+              <div class="product-name">Brk Cookie</div>
+               <label class="product-label">Delicious Home-made Cookies! </label>
+              <div class="product-price">₱120.00</div>
+            </div>
+          </div>
+
+          <div class="order-quantity">
+            <button class="qty-btn minus"><img src="images/minus.png" alt="Minus"></button>
+            <input type="text" value="1" class="qty-input" readonly>
+            <button class="qty-btn plus"><img src="images/plus.png" alt="Plus"></button>
+          </div>
+
+          <div class="order-total">₱120.00</div>
+
+          <div class="order-delete">
+            <img src="images/delete.png" alt="Delete" class="delete-icon">
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- CART SUMMARY SECTION -->
+  <section class="cart-summary">
+    <div class="summary-inner">
+
+      <!-- Voucher Row -->
+      <div class="voucher-row">
+        <div class="voucher-top">
+          <img src="images/voucher.png" alt="Voucher Icon" class="voucher-icon">
+          <span class="voucher-label">Platform Voucher</span>
+          <button class="voucher-btn">Select voucher</button>
+        </div>
+      </div>
+
+      <span id="appliedVoucherText" class="applied-voucher-text"></span>
+
+      <div class="cart-total">
+        <span>Total Amount:</span>
+        <span id="grandTotal">₱0.00</span>
+      </div>
+
+      <!-- Select/Delete/Checkout Row -->
+      <div class="summary-bottom">
+        <div class="summary-left">
+          <input type="checkbox" id="select-all">
+          <label for="select-all">Select All</label>
+          <button class="delete-all-btn">Delete All</button>
+        </div>
+
+        <div class="summary-right">
+          <button class="checkout-btn">Checkut(0)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOUCHER MODAL -->
+  <div id="voucherModal" class="voucher-modal">
+    <div class="voucher-modal-content">
+      <h3>Select a Voucher.</h3>
+      <label><input type="radio" name="voucher" value="₱10"> ₱10 OFF</label><br>
+      <label><input type="radio" name="voucher" value="₱20"> ₱20 OFF</label><br>
+      <label><input type="radio" name="voucher" value="₱50"> Free Shipping (₱50 OFF)</label><br>
+
+      <div class="voucher-actions">
+        <button id="applyVoucherBtn">Apply Voucher</button>
+        <button id="closeVoucherBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- ✅ JS FILE -->
+  <script src="product.js"></script>
+</body>
+</html>
