@@ -1,277 +1,638 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KOOKIE</title>
-  <link rel="icon"  href="Images/cookie.png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOOKIE - Premium Cookie Shop</title>
+    <link rel="icon" href="Images/cookie.png" /> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ---------- Fonts ---------- */
+        /* NOTE: Assuming SuperSunday-vn3MA.ttf and Logo.png/nav-background.png are in the correct relative paths */
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('../Kookies/SuperSunday-vn3MA.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        /* ---------- ROOT VARIABLES ---------- */
+        :root{
+            --pink: #ff007f; /* Primary Accent */
+            --light-pink: #ffb6d2; /* Soft Pink Highlight */
+            --bg: #fffafc; /* Light Pink Background */
+            --panel-bg: #ffffff; /* Panel/Section Background */
+            --muted-rose: #7b3c4f; /* Muted Dark Rose */
+            --dark-text: #381c25; /* Text Color (Darkest) */
+            --secondary-accent: #e75480; /* Deep Pink/Headings */
+            --card-shadow: 0 10px 25px rgba(255,182,193,0.35);
+        }
+
+        /* ---------- GENERAL & BODY ---------- */
+        body {
+            background-color: var(--bg);
+            color: var(--dark-text);
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .text-pink { color: var(--pink); }
+        .bg-pink { background-color: var(--pink) !important; }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            /* NOTE: This path 'Images/nav-background.png' must be correct for the background image to show */
+            background: url("Images/nav-background.png"); 
+            background-color: var(--panel-bg); /* Fallback color */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            padding: 0.75rem 1rem;
+        }
+
+        .navbar-brand small {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 700;
+        }
+
+        .navbar-nav .nav-link {
+            color: #333 !important;
+            font-weight: 600;
+            margin: 0 12px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            background-color: var(--light-pink);
+            border-radius: 10px;
+            color: var(--pink) !important;
+        }
+
+        .search-container { position: relative; margin-right: 10px; }
+        .search-container input {
+            border-radius: 20px; 
+            border: 1px solid var(--light-pink);
+            padding: 6px 15px 6px 35px; 
+            font-size: 0.9rem; 
+            width: 200px;
+            transition: border-color 0.3s;
+        }
+        .search-container input:focus {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 0.1rem var(--light-pink);
+        }
+        .search-container i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #888; }
+        .icon-btn { background: transparent; border: none; font-size: 1.3rem; color: var(--pink); margin-left: 8px; }
+        .login-btn { background-color: var(--secondary-accent); border: none; color: #fff1f4; border-radius: 20px; padding: 6px 18px; margin-left: 10px; transition: 0.3s; }
+        .login-btn:hover { background-color: var(--pink); }
+
+
+        /* 🌸 PRODUCT CARDS */
+        .product-card {
+            border: none;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(255, 0, 128, 0.15);
+        }
+
+        .product-card img {
+            border-radius: 20px 20px 0 0;
+            height: 240px;
+            width: 100%; /* Added to ensure full width */
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .best-seller-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--pink);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-pink {
+            background-color: var(--pink);
+            color: white;
+            font-size: 0.85rem;
+            border-radius: 10px;
+            transition: 0.3s;
+            border: 1px solid var(--pink); /* Added border for focus state */
+        }
+        .btn-pink:hover {
+            background-color: var(--secondary-accent);
+            color: white;
+            border: 1px solid var(--secondary-accent);
+        }
+
+        .btn-light-pink {
+            background-color: #ffe6f2; /* A light pink that contrasts well with the text */
+            color: var(--pink);
+            font-size: 0.85rem;
+            border-radius: 10px;
+            transition: 0.3s;
+            border: 1px solid #ffe6f2; /* Added border for focus state */
+        }
+        .btn-light-pink:hover {
+            background-color: var(--light-pink);
+            border: 1px solid var(--light-pink);
+        }
+
+        /* 🌸 GRID LAYOUT (3x4 configuration) */
+        #productRow {
+            padding: 20px 0;
+        }
+        
+        /* Ensures 4 items per row on extra-large screens */
+        @media (min-width: 1200px) { 
+            .col-xl-3 {
+                flex: 0 0 auto;
+                width: 25%;
+            }
+        }
+        
+        /* 🌸 LIST VIEW OVERRIDES */
+        .list-view .col-lg-12 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .list-view .product-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-align: left;
+            height: auto;
+            padding: 10px;
+        }
+
+        .list-view .product-card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            border-radius: 12px; /* Uniform radius for list view */
+        }
+        
+        .list-view .card-img-top {
+            /* Override grid view styles */
+            border-radius: 12px !important; 
+        }
+
+        /* Adjust card-body content for list view */
+        .list-view .card-body {
+            flex-grow: 1; /* Allow it to take up available space */
+            display: grid;
+            grid-template-areas: 
+                "name price"
+                "category rating"
+                "desc desc"
+                "actions actions";
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 5px 15px;
+        }
+        
+        .list-view .card-body h6 { grid-area: name; }
+        .list-view .card-body .fs-5 { grid-area: price; }
+        .list-view .card-body .text-pink { grid-area: category; }
+        .list-view .card-body .mb-2 { grid-area: rating; justify-self: end; }
+        .list-view .card-body .text-muted { grid-area: desc; margin-bottom: 10px !important; }
+        .list-view .card-body .mt-auto { grid-area: actions; margin-top: 0 !important; }
+        .list-view .product-card .best-seller-badge { top: 25px; left: 25px; right: auto; }
+        
+
+        /* 🌸 MODAL (Extra Large for Landscape Detail) */
+        .modal-content {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-img-col {
+            padding: 0;
+        }
+        
+        #modalImg {
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px 0 0 18px;
+        }
+
+        .rating-stars {
+            color: gold;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile adjustments for the Modal */
+        @media (max-width: 992px) {
+            #modalImg {
+                height: 250px;
+                width: 100%;
+                border-radius: 18px 18px 0 0;
+            }
+            .modal-img-col {
+                padding: 1rem !important;
+            }
+        }
+        /* 🌸 Responsive Controls */
+        .view-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .view-controls select {
+            border-radius: 20px;
+            padding: 6px 14px;
+            border: 1px solid var(--light-pink);
+            color: var(--pink);
+            font-weight: 500;
+        }
+        .view-toggle button {
+            background: #ffe6f2;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 10px;
+            color: var(--pink);
+            transition: 0.3s;
+        }
+        .view-toggle button.active {
+            background: var(--pink);
+            color: white;
+        }
+
+    </style>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="d-flex flex-column align-items-start">
+                    <img src="Images/Logo.png" alt="KOOKIE Logo" width="120"> 
+                    <small>fresh daily • bake with love</small>
+                </div>
+            </a>
 
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <div>
-        <img src="Images/Logo.png" alt="KOOKIE Logo" width="120">
-          <small>fresh daily • bake with love</small>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="home.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold active" href="#">SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="e.html">ABOUT</a></li> 
+                    <li class="nav-item"><a class="nav-link fw-bold" href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <div class="search-container">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search cookies" />
+                </div>
+                <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                <a href="cart.html" class="icon-btn position-relative" id="cartIconLink">
+                    <i class="bi bi-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count" style="font-size: 0.65em; padding: 0.3em 0.5em; display: none;">0</span>
+                </a>
+                <button class="login-btn">Login</button>
+            </div>
         </div>
-      </a>
+    </nav>
 
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <main class="py-5">
+        <div class="container">
+            <div class="view-controls">
+                <div class="d-flex gap-2">
+                    <div class="view-toggle">
+                        <button id="gridBtn" class="active" title="Grid View"><i class="bi bi-grid"></i></button>
+                        <button id="listBtn" title="List View"><i class="bi bi-list"></i></button>
+                    </div>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="classic">Classic Flavors</option>
+                        <option value="premium">Premium Delights</option>
+                        <option value="specialty">Specialty & Stuffed</option>
+                        <option value="mix boxes">Mix Boxes</option>
+                    </select>
+                </div>
+                <select id="sortSelect">
+                    <option value="default">Sort by</option>
+                    <option value="best">Best Seller</option>
+                    <option value="high">Highest Price</option>
+                    <option value="low">Lowest Price</option>
+                    <option value="rating">Highest Rating</option>
+                </select>
+            </div>
 
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-          <li class="nav-item"><a class="nav-link fw-bold" href="home.html">HOME</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold active" href="#">SHOP</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="e.html">ABOUT</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="contact.html">CONTACT</a></li>
-        </ul>
-      </div>
-
-      <div class="d-flex align-items-center">
-        <div class="search-container">
-          <i class="bi bi-search"></i>
-          <input type="text" placeholder="Search cookies" />
+            <div id="productRow" class="row g-4">
+                </div>
         </div>
-        <button class="icon-btn"><i class="bi bi-heart"></i></button>
-        <button class="icon-btn position-relative"><i class="bi bi-cart"></i></button>
-        <button class="login-btn">Login</button>
-      </div>
+    </main>
+
+    <div class="modal fade" id="viewModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="row g-0">
+                    
+                    <div class="col-lg-5 modal-img-col">
+                        <img id="modalImg" class="img-fluid" alt="Cookie Image" />
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="modal-body">
+                            <h5 id="modalName" class="fw-bold text-pink fs-3 mb-1"></h5>
+                            <p id="modalCategory" class="small text-pink fw-semibold mb-2"></p>
+                            <p id="modalRating" class="rating-stars mb-3"></p>
+                            
+                            <hr>
+
+                            <h6 class="fw-bold mt-3">About This Cookie</h6>
+                            <p id="modalDetailedDesc" class="text-secondary mb-4"></p>
+                            
+                            <h6 class="fw-bold">Quick Overview</h6>
+                            <p id="modalDesc" class="text-muted small mb-3"></p>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <span id="modalCalories" class="badge text-bg-info me-3 fs-6"></span>
+                                    <span class="text-dark fw-bold">Price: <span id="modalPrice" class="fs-4 text-pink"></span></span>
+                                </div>
+                            </div>
+                            
+                            <p id="modalIngredients" class="small text-dark fst-italic border-top pt-2"></p>
+
+                            <button class="btn btn-pink add-to-cart-modal-btn w-100 mt-3" data-bs-dismiss="modal">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
 
-  <main class="py-5">
-    <div class="container">
-      <h2 class="text-center fw-bold mb-4 text-pink">Our Best Cookies 🍪</h2>
-
-      <div class="row g-4">
-
-        <!-- Product Card 1 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/brk.jpg" class="card-img-top" alt="Brk Cookie">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Brk Cookie</h6>
-                <span class="fw-bold text-dark">₱120.00</span>
-              </div>
-              <p class="text-muted small mb-2">Crunchy & gooey chocolate cookie.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="cartToast" class="toast align-items-center text-white bg-pink border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body fw-semibold">Added to cart 🍪</div>
             </div>
-          </div>
         </div>
-
-        <!-- Product 2 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/chu.jpg" class="card-img-top" alt="Churro Cookie">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Churro Cookie</h6>
-                <span class="fw-bold text-dark">₱110.00</span>
-              </div>
-              <p class="text-muted small mb-2">Cinnamon-sugar, crispy edges.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/galaxy.jpg" class="card-img-top" alt="Galaxy Cookie">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Galaxy Cookie</h6>
-                <span class="fw-bold text-dark">₱130.00</span>
-              </div>
-              <p class="text-muted small mb-2">Colorful candy-topped cookie.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 4-->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/ice.jpg" class="card-img-top" alt="Ice Cream Cookie">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Ice Cream Cookie</h6>
-                <span class="fw-bold text-dark">₱140.00</span>
-              </div>
-              <p class="text-muted small mb-2">Cookie sandwich with ice-cream vibe.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/milk.jpg" class="card-img-top" alt="Milk & Cookies">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Milk & Cookies</h6>
-                <span class="fw-bold text-dark">₱100.00</span>
-              </div>
-              <p class="text-muted small mb-2">Classic milk-chocolate chip.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <!-- Product 6 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/mon.jpg" class="card-img-top" alt="Monday Blue">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Monday Blue</h6>
-                <span class="fw-bold text-dark">₱135.00</span>
-              </div>
-              <p class="text-muted small mb-2">Fun blue frosting cookie.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <!-- Product 7 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/oreo.jpg" class="card-img-top" alt="Oreo-stuffed">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Oreo-stuffed</h6>
-                <span class="fw-bold text-dark">₱150.00</span>
-              </div>
-              <p class="text-muted small mb-2">Cookies & cream overload.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <!-- Product 8 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/ras.jpg" class="card-img-top" alt="Rasberry Delight">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Rasberry Delight</h6>
-                <span class="fw-bold text-dark">₱125.00</span>
-              </div>
-              <p class="text-muted small mb-2">Tart & sweet with raspberry.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <!-- Product 9 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/red.jpg" class="card-img-top" alt="Red Velvet">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Red Velvet</h6>
-                <span class="fw-bold text-dark">₱145.00</span>
-              </div>
-              <p class="text-muted small mb-2">Red velvet cookie with white chips.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <!-- Product 10 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/white chocolate.jpg" class="card-img-top" alt="White Chocolate">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">White Chocolate</h6>
-                <span class="fw-bold text-dark">₱155.00</span>
-              </div>
-              <p class="text-muted small mb-2">White chocolate & macadamia.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 11 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/chu.jpg" class="card-img-top" alt="Churro Cookie">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Churro Cookie</h6>
-                <span class="fw-bold text-dark">₱110.00</span>
-              </div>
-              <p class="text-muted small mb-2">Cinnamon-sugar, crispy edges.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <!-- Product 12 -->
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card product-card">
-            <img src="Images/Cookies/chu.jpg" class="card-img-top" alt="Churro Cookie">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start">
-                <h6 class="fw-bold mb-0">Churro Cookie</h6>
-                <span class="fw-bold text-dark">₱110.00</span>
-              </div>
-              <p class="text-muted small mb-2">Cinnamon-sugar, crispy edges.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <button class="btn btn-pink">Add</button>
-                <button class="btn btn-light-pink">View</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 🍪 Product Data (Kept the same for rich details)
+        const products = [
+            { id: 1, name:"Biscoff Cookie", price:120.00, desc:"Caramelized crunch with Biscoff spread.", detailedDesc: "Our signature cookie stuffed and topped with crunchy Biscoff cookies and creamy spread. A perfect balance of spice and sweet.", img:"Images/Cookies/biscoff.jpg", best:true, category:"Specialty & Stuffed", ingredients:"Flour, Biscoff Spread, Brown Sugar, Butter, Spices", calories:380, rating:4.8 },
+            { id: 2, name:"Brookie Cookie", price:120.00, desc:"Crunchy & gooey chocolate cookie.", detailedDesc: "The ultimate hybrid! Half fudgy brownie, half chewy chocolate chip cookie. Pure decadence in a single bite.", img:"Images/Cookies/brk.jpg", best:false, category:"Premium Delights", ingredients:"Flour, Cocoa Powder, Semi-Sweet Chocolate Chips, Butter", calories:350, rating:4.5 },
+            { id: 3, name:"Churro Cookie", price:110.00, desc:"Cinnamon-sugar, crispy edges.", detailedDesc: "Inspired by the classic Spanish treat. Rolled in a rich cinnamon-sugar mixture for a crispy exterior and soft, warm interior.", img:"Images/Cookies/chu.jpg", best:true, category:"Classic Flavors", ingredients:"Cinnamon, Flour, Sugar, Egg, Vanilla Extract", calories:310, rating:4.7 },
+            { id: 4, name:"Dark Chocolate Lava", price:130.00, desc:"Rich cocoa flavor with dark chunks.", detailedDesc: "An intense, extra-dark chocolate cookie with a molten chocolate center that oozes when warm. For serious chocoholics only.", img:"Images/Cookies/DarkChocolate.jpg", best:true, category:"Premium Delights", ingredients:"Dark Cocoa, Callebaut Dark Chocolate Chunks, Butter, Sea Salt", calories:410, rating:4.9 },
+            { id: 5, name:"Galaxy Cookie", price:130.00, desc:"Colorful candy-topped cookie.", detailedDesc: "A fun, vanilla-based sugar cookie loaded with colorful chocolate-coated candies, perfect for kids and the young at heart.", img:"Images/Cookies/galaxy.jpg", best:false, category:"Specialty & Stuffed", ingredients:"Flour, Sugar, Chocolate Candies, Sprinkles", calories:330, rating:4.2 },
+            { id: 6, name:"Ice Cream Cookie Sandwich", price:140.00, desc:"Cookie sandwich with ice-cream vibe.", detailedDesc: "Two soft, chewy cookies hugging a generous layer of sweet, vanilla-flavored cream. Best served chilled!", img:"Images/Cookies/ice.jpg", best:false, category:"Specialty & Stuffed", ingredients:"Vanilla Cream, Chocolate Chips, Butter Cream", calories:450, rating:4.6 },
+            { id: 7, name:"Milk Chocolate Chip", price:100.00, desc:"Classic milk-chocolate chip.", detailedDesc: "The timeless favourite. Perfectly chewy with generous chunks of sweet, creamy milk chocolate. Made with premium unsalted butter.", img:"Images/Cookies/milk.jpg", best:true, category:"Classic Flavors", ingredients:"Flour, Milk Chocolate Chips, Brown Sugar, Vanilla", calories:290, rating:4.8 },
+            { id: 8, name:"Monster Cookie", price:160.00, desc:"Oats, peanut butter, M&Ms, and chocolate chips.", detailedDesc: "A truly massive and satisfying cookie loaded with everything: oats, creamy peanut butter, colorful M&Ms, and both semi-sweet and milk chocolate chips. It's a sweet feast!", img:"Images/Cookies/monster.jpg", best:false, category:"Specialty & Stuffed", ingredients:"Oats, Peanut Butter, M&Ms, Chocolate Chips, Brown Sugar", calories:550, rating:4.7 }, 
+            { id: 9, name:"Raspberry Delight", price:125.00, desc:"Tart & sweet with raspberry.", detailedDesc: "A soft sugar cookie with a tart raspberry jam center and a delicate almond glaze. A refreshing balance of flavors.", img:"Images/Cookies/ras.jpg", best:false, category:"Classic Flavors", ingredients:"Raspberry Jam, Flour, Butter, Almond Extract", calories:320, rating:4.4 },
+            { id: 10, name:"Red Velvet Cheesecake", price:145.00, desc:"Red velvet cookie with white chips.", detailedDesc: "Rich, deep red cocoa flavor stuffed with a tangy cream cheese filling. A bakery classic reimagined as a chewy cookie.", img:"Images/Cookies/red.jpg", best:false, category:"Premium Delights", ingredients:"Cocoa, Red Dye, White Choc Chips, Cream Cheese", calories:430, rating:4.7 },
+            { id: 11, name:"Oreo-stuffed", price:150.00, desc:"Cookies & cream overload.", detailedDesc: "A whole Oreo cookie baked inside our classic dough, then topped with crushed Oreo pieces. Double the cream, double the fun!", img:"Images/Cookies/oreo.jpg", best:true, category:"Specialty & Stuffed", ingredients:"Oreo, Sugar, Flour, Cocoa, Cream Filling", calories:480, rating:4.9 },
+            { id: 12, name:"White Chocolate Macadamia", price:155.00, desc:"White chocolate & macadamia.", detailedDesc: "Our most premium offering. Creamy Belgian white chocolate chunks paired with crunchy, roasted macadamia nuts. Unforgettable texture and flavour.", img:"Images/Cookies/white chocolate.jpg", best:true, category:"Premium Delights", ingredients:"White Chocolate Chunks, Macadamia Nuts, Butter, Vanilla", calories:460, rating:4.9 },
+            { id: 13, name:"Assorted Box (4)", price:250.00, desc:"Assorted cookie box of 4 flavors.", detailedDesc: "Perfect for gifting or sampling! Includes one of each: Milk Chocolate Chip, Churro, Dark Chocolate Lava, and White Chocolate Macadamia.", img:"Images/Cookies/assorted4.jpg", best:false, category:"Mix Boxes", ingredients:"Mix of 4 best flavors", calories:1500, rating:4.7 },
+            { id: 14, name:"Assorted Box (6)", price:350.00, desc:"Assorted cookie box of 6 flavors.", detailedDesc: "The complete tasting experience! Includes all our best sellers: Milk Chocolate Chip, Churro, Dark Chocolate Lava, White Chocolate Macadamia, Biscoff, and Oreo-Stuffed.", img:"Images/Cookies/assorted6.jpg", best:false, category:"Mix Boxes", ingredients:"Mix of 6 best flavors", calories:2200, rating:4.8 },
+        ];
+
+        const productRow = document.getElementById('productRow');
+        const gridBtn = document.getElementById('gridBtn');
+        const listBtn = document.getElementById('listBtn');
+        const sortSelect = document.getElementById('sortSelect');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const searchInput = document.getElementById('searchInput');
+        const modalElement = document.getElementById('viewModal');
+        const modal = new bootstrap.Modal(modalElement);
+        const toast = new bootstrap.Toast(document.getElementById('cartToast'), { delay: 1500 });
+
+        let isList = false;
+        let selectedProduct = null; // To hold the product data for "Add to Cart" from the modal
+
+        function getStars(rating) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5 ? '<i class="bi bi-star-half"></i>' : '';
+            const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+            return '<span class="rating-stars">' +
+                   '<i class="bi bi-star-fill"></i>'.repeat(fullStars) +
+                   halfStar +
+                   '<i class="bi bi-star"></i>'.repeat(emptyStars) +
+                   '</span>';
+        }
+
+        // --- Cart Functions (using localStorage) ---
+
+        function updateCartIconCounter(cart) {
+            const cartCountEl = document.getElementById('cart-count');
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (cartCountEl) {
+                cartCountEl.textContent = totalCount;
+                // Show/Hide the badge based on cart items
+                cartCountEl.style.display = totalCount > 0 ? 'inline-block' : 'none';
+            }
+        }
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('kookieCart')) || [];
+            
+            // Look for existing item
+            const existingItemIndex = cart.findIndex(item => item.id === product.id);
+
+            if (existingItemIndex !== -1) {
+                // If it exists, increase quantity
+                cart[existingItemIndex].qty += 1;
+            } else {
+                // If new, add it to the cart with qty 1
+                const newItem = {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.img,
+                    qty: 1
+                };
+                cart.push(newItem);
+            }
+
+            localStorage.setItem('kookieCart', JSON.stringify(cart));
+            updateCartIconCounter(cart);
+            toast.show(); // Show toast notification
+        }
+
+        // --- Rendering, Filtering, Sorting Functions ---
+
+        function renderProducts(filter = products) {
+            productRow.innerHTML = '';
+            
+            // Hide 'Mix Boxes' category when in Grid View, unless explicitly selected in the filter
+            const filterCategory = categoryFilter.value;
+            const visibleProducts = filter.filter(p => isList || filterCategory === 'mix boxes' || !p.category.includes("Box"));
+
+            visibleProducts.forEach(p => {
+                const col = document.createElement('div');
+                // Use col-xl-3 for the 3x4 grid structure
+                col.className = isList ? 'col-lg-12' : 'col-xl-3 col-lg-4 col-md-6 col-sm-6';
+                
+                col.innerHTML = `
+                    <div class="card product-card h-100">
+                        ${p.best ? '<span class="best-seller-badge"><i class="bi bi-star-fill"></i> Best Seller</span>' : ''}
+                        <img src="${p.img}" alt="${p.name}" class="card-img-top">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <h6 class="fw-bold mb-0">${p.name}</h6>
+                                <span class="fw-bold text-dark fs-5">₱${p.price.toFixed(2)}</span>
+                            </div>
+                            <p class="text-pink small fw-semibold mb-1">${p.category}</p>
+                            <div class="mb-2">
+                                ${getStars(p.rating)}
+                            </div>
+                            <p class="text-muted small mb-3">${p.desc}</p>
+                            <div class="mt-auto d-flex justify-content-between">
+                                <button class="btn btn-pink add-btn" data-product-id="${p.id}">Add to Cart</button>
+                                <button class="btn btn-light-pink view-btn"
+                                    data-bs-toggle="modal" data-bs-target="#viewModal"
+                                    data-product-id="${p.id}">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
+                productRow.appendChild(col);
+            });
+        }
+        
+        function applyFiltersAndSort() {
+            let filtered = [...products];
+            
+            // 1. Search Filter
+            const searchVal = searchInput.value.toLowerCase();
+            if (searchVal) {
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(searchVal) || p.desc.toLowerCase().includes(searchVal));
+            }
+
+            // 2. Category Filter
+            const categoryVal = categoryFilter.value.toLowerCase();
+            if (categoryVal !== 'all') {
+                filtered = filtered.filter(p => p.category.toLowerCase().includes(categoryVal));
+            }
+
+            // 3. Sorting
+            const sortVal = sortSelect.value;
+            if (sortVal === 'high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortVal === 'low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortVal === 'best') {
+                // Sort best sellers to the top
+                filtered.sort((a, b) => (b.best ? 1 : 0) - (a.best ? 1 : 0));
+            } else if (sortVal === 'rating') {
+                filtered.sort((a, b) => b.rating - a.rating);
+            }
+            
+            renderProducts(filtered);
+        }
+
+        // --- Event Listeners ---
+
+        // Controls change listeners
+        sortSelect.addEventListener('change', applyFiltersAndSort);
+        categoryFilter.addEventListener('change', applyFiltersAndSort);
+        searchInput.addEventListener('input', applyFiltersAndSort);
+
+        // View Toggle
+        gridBtn.addEventListener('click', () => {
+            isList = false;
+            productRow.classList.remove('list-view');
+            gridBtn.classList.add('active');
+            listBtn.classList.remove('active');
+            applyFiltersAndSort();
+        });
+
+        listBtn.addEventListener('click', () => {
+            isList = true;
+            productRow.classList.add('list-view');
+            listBtn.classList.add('active');
+            gridBtn.classList.remove('active');
+            applyFiltersAndSort();
+        });
+
+        // Add to Cart from Card Button
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-btn')) {
+                const productId = parseInt(e.target.dataset.productId);
+                const product = products.find(p => p.id === productId);
+                if (product) {
+                    addToCart(product);
+                }
+            }
+        });
+
+        // Modal Open Listener (View Details)
+        modalElement.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const productId = parseInt(button.dataset.productId);
+            const product = products.find(p => p.id === productId);
+            
+            if (product) {
+                selectedProduct = product; // Store the product for the modal's Add to Cart button
+                document.getElementById('modalImg').src = product.img;
+                document.getElementById('modalName').innerText = product.name;
+                document.getElementById('modalCategory').innerText = product.category;
+                document.getElementById('modalDetailedDesc').innerText = product.detailedDesc;
+                document.getElementById('modalDesc').innerText = `Short Description: ${product.desc}`;
+                document.getElementById('modalPrice').innerText = `₱${product.price.toFixed(2)}`;
+                document.getElementById('modalIngredients').innerText = `Key Ingredients: ${product.ingredients}`;
+                document.getElementById('modalCalories').innerText = `${product.calories} Kcal`;
+                document.getElementById('modalRating').innerHTML = getStars(product.rating);
+            }
+        });
+        
+        // Add to Cart from Modal Button
+        document.querySelector('.add-to-cart-modal-btn').addEventListener('click', () => {
+            if (selectedProduct) {
+                addToCart(selectedProduct);
+            }
+        });
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            applyFiltersAndSort(); // Render products and set up filters/sort
+            const initialCart = JSON.parse(localStorage.getItem('kookieCart')) || [];
+            updateCartIconCounter(initialCart); // Load initial cart count
+        });
+
+    </script>
 </body>
 </html>

@@ -1,176 +1,193 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
-}
+/* 🌸 GENERAL STYLE */
 body {
-  background: #FFB6D2;
-  font-family: "Poppins", sans-serif;
+  background-color: #fff9f9;
+  color: #4a2e2a;
+  font-family: 'Poppins', sans-serif;
 }
 
+.text-pink {
+  color: #ff4da6;
+}
+
+.bg-pink {
+  background-color: #ff4da6 !important;
+}
+
+/* 🌸 NAVBAR */
 .navbar {
   background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 10px rgba(255, 192, 203, 0.3);
+  padding: 0.8rem 1.5rem;
 }
 
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  color: #ff007f;
-  gap: 8px;
-}
-
-.navbar-brand img {
-  height: 50px;
-  margin-right: 8px;
-  justify-self: center;
-  align-self: center;
-}
-
-.navbar small {
+.navbar-brand small {
   display: block;
-  font-size: 0.75rem;
-  color: #666;
-  font-weight: 800;
+  font-size: 0.8rem;
+  color: #ff6ea9;
+  letter-spacing: 0.5px;
 }
 
-.navbar-nav .nav-link {
+.nav-link {
   color: #333 !important;
-  font-weight: 600;
-  margin: 0 12px;
+  margin: 0 10px;
   transition: 0.3s;
-  gap: 25px;
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
-  background-color: #ffb6d2;
-  border-radius: 10px;
-  color: #ff007f !important;
+.nav-link:hover, .nav-link.active {
+  color: #ff4da6 !important;
 }
 
+/* 🌸 SEARCH + ICONS */
 .search-container {
   position: relative;
   margin-right: 10px;
 }
 
-.search-container input {
-  border-radius: 20px;
-  border: 1px solid #ddd;
-  padding: 6px 15px 6px 35px;
-  font-size: 0.9rem;
-  width: 300px;
-}
-
 .search-container i {
   position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
+  left: 10px;
+  top: 9px;
+  color: #ff4da6;
+}
+
+.search-container input {
+  padding: 6px 10px 6px 30px;
+  border: 1px solid #ffb6d2;
+  border-radius: 20px;
+  outline: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.search-container input:focus {
+  border-color: #ff4da6;
+  box-shadow: 0 0 5px rgba(255, 77, 166, 0.4);
 }
 
 .icon-btn {
-  background: transparent;
   border: none;
-  font-size: 1.3rem;
-  color: #ff007f;
-  margin-left: 8px;
-  position: relative;
-  gap:10px;
+  background: #ffe6f2;
+  border-radius: 50%;
+  padding: 6px 8px;
+  color: #ff4da6;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+  background-color: #ff4da6;
+  color: white;
 }
 
 .login-btn {
   background-color: #ff4da6;
   border: none;
-  color: #fff;
+  color: white;
   font-weight: 600;
   border-radius: 20px;
-  padding: 6px 18px;
-  margin-left: 10px;
+  padding: 6px 14px;
+  margin-left: 5px;
+  transition: 0.3s;
 }
 
 .login-btn:hover {
   background-color: #ff007f;
 }
 
-.text-pink {
-  color: #ff007f;
-}
-
+/* 🌸 PRODUCT CARDS */
 .product-card {
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(255, 0, 128, 0.15);
 }
 
 .product-card img {
-  border-radius: 15px 15px 0 0;
-  height: 200px;
+  border-radius: 20px 20px 0 0;
+  height: 240px;
   object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 15px 18px;
+}
+
+/* Buttons inside cards */
 .btn-pink {
-  background-color: #ff2ea6;
-  color: #fff;
-  font-weight: 600;
+  background-color: #ff4da6;
+  color: white;
+  font-size: 0.85rem;
   border-radius: 10px;
-  padding: 5px 15px;
+  transition: 0.3s;
 }
 
 .btn-pink:hover {
   background-color: #ff007f;
-  color: #fff;
 }
 
 .btn-light-pink {
   background-color: #ffe6f2;
-  color: #ff2ea6;
-  font-weight: 600;
+  color: #ff4da6;
+  font-size: 0.85rem;
   border-radius: 10px;
-  padding: 5px 15px;
+  transition: 0.3s;
 }
 
 .btn-light-pink:hover {
-  background-color: #ffd6eb;
+  background-color: #ffb6d2;
+  color: white;
 }
-@media (max-width: 992px) {
-  .navbar-collapse {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-  }
 
-  .navbar-nav {
-    text-align: center;
-    gap: 10px;
-  }
+/* 🌸 GRID LAYOUT IMPROVEMENTS */
+#productRow {
+  padding: 20px 0;
+}
 
-  .search-container {
-    width: 100%;
-    margin-top: 10px;
-  }
+.row.g-4 {
+  --bs-gutter-x: 1.75rem;
+  --bs-gutter-y: 2rem;
+}
 
-  .search-container input {
-    width: 350px;
-  }
+/* 🌸 LIST VIEW OVERRIDES */
+.list-view .product-card {
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(255, 77, 166, 0.15);
+  background-color: #fff;
+  padding: 10px;
+}
 
-  .login-btn {
-    width: 100%;
-    order: -1;
-    margin-top: 8px;
-    margin-right: 10px;
-  }
+.list-view .card-body {
+  padding: 10px 20px;
+}
 
-  .product-card img {
-    height: 180px;
-  }
+/* 🌸 MODAL */
+.modal-content {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-body h5 {
+  color: #ff4da6;
+}
+
+.modal-body p {
+  font-size: 0.9rem;
+}
+
+/* 🌸 TOAST */
+.bg-pink {
+  background-color: #ff4da6 !important;
 }

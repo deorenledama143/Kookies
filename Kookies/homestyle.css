@@ -19,7 +19,7 @@ body {
 
 /* navbar */
 .navbar {
-  background-color: #fff;
+    background: url("Images/nav-background.png");
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   padding: 0.75rem 1rem;
 }

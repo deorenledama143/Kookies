@@ -42,6 +42,7 @@
         .navbar {
             background: url("Images/nav-background.png");
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+              padding: 0.75rem 1rem;
         }
 
         .navbar-brand small {
@@ -201,6 +202,7 @@
 .timeline-section {
     padding: 80px 0;
     background: linear-gradient(180deg, #fff1f4 0%, #f8d5ed 100%);
+    padding-bottom: 80px;
 }
 
 .timeline-wrapper {
@@ -387,7 +389,6 @@ h1, h2, h3 {
 
 /* 2. BORDER APPLIED TO INNER CONTAINER */
 .about-section > .container {
-    border-bottom: 1px solid var(--pink); 
     padding-bottom: 2rem !important; /* Optional: adds space between content and line */
 }
 /* ------------------------ */
@@ -395,6 +396,123 @@ h1, h2, h3 {
 .timeline-detail {
     display: none; /* This will hide the detail box by default */
     /* All other existing styles for .timeline-detail should remain */
+}
+
+/* footer section */
+.footer-section {
+    min-height: 30vh;
+    background: #ffb6d2;
+    padding: 55px 0 10px 0;
+    margin-top: -40px;
+    color: #333;
+}
+
+.footer-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: white
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px; 
+    text-align: left;
+}
+
+.contact-icon { 
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    color: #ff4da6;
+    font-size: 1.5rem;
+}
+
+.contact-info h6 {
+    font-weight: 800;
+    margin-bottom: -2px;
+    font-size: 20px;
+    color: white;
+}
+
+.contact-info p {    
+    font-size: 20px;
+    font-weight: lighter;
+    margin: 0;
+    color: white;
+}
+
+.loc {
+    line-height: 1.3;
+}
+
+.social-btn {    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;    
+    margin-right: 10px;
+}
+
+.social-btn i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.social-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.social-fb {
+    background: #1877f2;
+}
+  /*need to find the correct color code*/
+.social-ig {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.social-x {
+    background: #1da1f2;
+}
+
+.social-tiktok {
+    background: black;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+    margin-top: 10px; 
+    text-align: center;
+    color: white
+}
+
+.footer-bottom a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.footer-bottom a:hover { 
+    color: #ff4da6;
 }
 
     </style>
@@ -418,7 +536,7 @@ h1, h2, h3 {
                     <li class="nav-item"><a class="nav-link fw-bold" href="home.html">HOME</a></li>
                     <li class="nav-item"><a class="nav-link fw-bold" href="index.html">SHOP</a></li>
                     <li class="nav-item"><a class="nav-link fw-bold active" href="#">ABOUT</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="#">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="contact.html">CONTACT</a></li>
                 </ul>
             </div>
 
@@ -611,10 +729,85 @@ h1, h2, h3 {
 </section>
 
 
+ <footer class="footer-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
 
-    <footer class="footer text-center py-3 bg-pink shadow-sm mt-5">
-        <p class="mb-0 small">&copy; 2025 KOOKIE | Built by KOOKIE Studio</p>
+                    <h3 class="footer-heading">CONTACT</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h6>Phone</h6>
+                            <p>+63 917 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h6>Email</h6>
+                            <p>hello@kookie.ph w/ link</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="bi bi-clock-fill"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h6>Hours</h6>
+                            <p>Mon-Sun: 9:00 AM - 9:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h3 class="footer-heading">LOCATION</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div class="contact-info">
+                            <p class="loc">Pantaleon del Rosario St, Cebu City, 6000 Cebu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h3 class="footer-heading">FOLLOW US</h3>
+                    <div>
+                        <a href="https://web.facebook.com/kookie.56126" target="_blank" rel="noopener noreferrer" class="social-btn social-fb" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn social-ig" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn social-x" aria-label="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn social-tiktok" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom text-center">
+                <p class="mb-3">© 2025 Kookie. All rights reserved.</p>
+                <div>
+                    <!--need smthng to goto-->
+                    <a href="#">Sitemap</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
     </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
