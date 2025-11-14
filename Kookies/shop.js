@@ -204,7 +204,32 @@
     });
 
     // Initial Load
-    document.addEventListener('DOMContentLoaded', () => {
-        applyFiltersAndSort();
-        updateCartIconCounter();
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    applyFiltersAndSort();
+    updateCartIconCounter();
+    
+    // Auto-open modal if product ID is in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    
+    if (productId) {
+        const product = products.find(p => p.id === parseInt(productId));
+        if (product) {
+            // Wait a bit for the page to fully load, then open the modal
+            setTimeout(() => {
+                selectedProduct = product;
+                document.getElementById('modalImg').src = product.img;
+                document.getElementById('modalName').innerText = product.name;
+                document.getElementById('modalCategory').innerText = product.category;
+                document.getElementById('modalDetailedDesc').innerText = product.detailedDesc;
+                document.getElementById('modalDesc').innerText = `Short Description: ${product.desc}`;
+                document.getElementById('modalPrice').innerText = `₱${product.price.toFixed(2)}`;
+                document.getElementById('modalIngredients').innerText = `Key Ingredients: ${product.ingredients}`;
+                document.getElementById('modalCalories').innerText = `${product.calories} Kcal`;
+                document.getElementById('modalRating').innerHTML = getStars(product.rating);
+                
+                modal.show();
+            }, 300);
+        }
+    }
+});

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>About | KOOKIE nh</title>
+    <title>About | Kookie</title>
     <link rel="icon" href="Images/cookie.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
@@ -396,36 +396,35 @@ h1, h2, h3 {
 .footer-section {
     min-height: 30vh;
     background: #ffb6d2;
-    padding: 55px 0 10px 0;
-    margin-top: -40px;
+    padding: 0 0 0.6rem 0;
     color: #333;
 }
 
 .footer-heading {
-    font-size: 2rem;
+    font-size: 1.5rem; 
     font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    color: white
+    letter-spacing: 0.1rem;
+    margin-bottom: 1.8rem;
+    color: white;
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 25px; 
-    text-align: left;
+    margin-bottom: 1.5rem; 
 }
 
 .contact-icon { 
-    width: 45px;
-    height: 45px;
+    width: 2.7rem;
+    height: 2.6rem;
     background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
+    margin-right: 0.9rem;
     flex-shrink: 0;
+    transition: all 0.3s ease;
 }
 
 .contact-icon i {
@@ -435,16 +434,27 @@ h1, h2, h3 {
 
 .contact-info h6 {
     font-weight: 800;
-    margin-bottom: -2px;
-    font-size: 20px;
+    margin-bottom: -0.1rem;
+    font-size: 15px; 
     color: white;
 }
 
 .contact-info p {    
-    font-size: 20px;
-    font-weight: lighter;
+    font-size: 18px; 
+    font-weight: 300;
     margin: 0;
     color: white;
+}
+
+.contact-info a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contact-info a:hover {
+    transform: scale(1.01);
 }
 
 .loc {
@@ -452,15 +462,15 @@ h1, h2, h3 {
 }
 
 .social-btn {    
-    width: 50px;
-    height: 50px;
+    width: 2.7rem;
+    height: 2.6rem;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 0.3s;    
-    margin-right: 10px;
+    transition: all 0.3s ease;    
+    margin-right: 0.625rem;
 }
 
 .social-btn i {
@@ -470,43 +480,25 @@ h1, h2, h3 {
 
 .social-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.15);
 }
 
-.social-fb {
-    background: #1877f2;
-}
-  /*need to find the correct color code*/
-.social-ig {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-
-.social-x {
-    background: #1da1f2;
-}
-
-.social-tiktok {
-    background: black;
-}
+.social-fb { background: #1877f2; }
+.social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.social-x { background: #1da1f2; }
+.social-tiktok { background: black; }
 
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
-    padding-top: 20px;
-    margin-top: 10px; 
+    padding-top: 1.2rem;
+    margin-top: 0.6rem; 
     text-align: center;
-    color: white
-}
-
-.footer-bottom a {
     color: white;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 15px;
-    transition: color 0.3s;
 }
 
-.footer-bottom a:hover { 
-    color: #ff4da6;
+.footer-bottom p {
+    margin-bottom: 0.6rem;
+    font-size: 16px; 
 }
 
     </style>
@@ -516,7 +508,9 @@ h1, h2, h3 {
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <div class="d-flex flex-column align-items-start">
-                    <img src="Images/Logo.png" alt="KOOKIE Logo" width="120">
+                    <a href="home.html">
+                      <img src="Images/Logo.png" alt="KOOKIE Logo" width="120">
+                    </a>
                     <small>fresh daily • bake with love</small>
                 </div>
             </a>
@@ -548,7 +542,7 @@ h1, h2, h3 {
     <section class="about-section py-5">
         <div class="container text-center">
             <h2 style="
-            font-family: 'CustomFont'; font-size: 70px;
+            font-family: 'CustomFont', 'Poppins'; color:#ff4da6; letter-spacing: 0.125rem; word-spacing: 0.625rem;font-size: 70px;
             " class="fw-bold mb-4">ABOUT KOOKIE</h2>
             <p class="lead mb-5">KOOKIE is a student-built e-commerce project that celebrates the joy of homemade cookies. Every click should feel as warm as every bite — blending thoughtful design, clean code, and a sprinkle of creativity.</p>
 
@@ -556,7 +550,7 @@ h1, h2, h3 {
                 <div class="col-md-5">
                     <div class="info-box shadow-sm p-4 rounded-4">
                         <h4 style="
-            font-family: 'CustomFont';color:#ff007f; 
+            font-family: 'CustomFont', 'Poppins'; color:#ff4da6; 
             " class="fw-bold">Our Mission</h4>
                         <p>To make every moment sweeter by delivering freshly baked cookies made with care, accessible, simple, and full of warmth.</p>
                     </div>
@@ -564,7 +558,7 @@ h1, h2, h3 {
                 <div class="col-md-5">
                     <div class="info-box shadow-sm p-4 rounded-4">
                         <h4 style="
-            font-family: 'CustomFont';color:#ff007f 
+            font-family: 'CustomFont', 'Poppins'; color:#ff4da6; 
             " class="fw-bold">Our Vision</h4>
                         <p>To become the go-to online cookie shop where every customer feels the love of small-batch baking and fast, friendly service.</p>
                     </div>
@@ -576,8 +570,7 @@ h1, h2, h3 {
     <section class="team py-5">
         <div class="container text-center">
             <h2 style="
-            font-family: 'CustomFont';
-            font-family: 'CustomFont';color:#ff007f;font-size: 70px; padding-bottom: 20px;
+            font-family: 'CustomFont', 'Poppins'; color:#ff4da6; letter-spacing: 0.125rem; word-spacing: 0.625rem; font-size: 70px; padding-bottom: 20px;
             " class="fw-bold mb-1 text-pink">Meet the Doughminators</h2>
             <p style="color: #6b2b3b; font-family: 'Poppins', sans-serif; font-size: 20px; padding-bottom: 20px;">They knead ideas, not just dough. Blending creativity, passion, and a pinch of sugar to make KOOKIE as sweet as it is smart.</p>
 
@@ -705,7 +698,7 @@ h1, h2, h3 {
     <div class="container">
         <div class="timeline-wrapper">
             <div class="timeline-header">
-                <h2 style="font-family: 'CustomFont'; font-size: 70px; ">Our Development Journey</h2>
+               <h2 style="font-family: 'CustomFont', 'Poppins'; color:#ff4da6; letter-spacing: 0.125rem; word-spacing: 0.625rem; font-size: 70px; ">Our Development Journey</h2>
                 <p class="lead text-muted-rose" style="max-width: 1000px; margin: auto auto; text-align: center;padding-bottom: 50px; ">
                     This timeline illustrates the <span style="font-weight: bold;">key phases and milestones </span>of the KOOKIE e-commerce project, from initial concept to final deployment. It represents our commitment to a structured and iterative development process.
                 </p>
@@ -721,8 +714,8 @@ h1, h2, h3 {
     </div>
 </section>
 
-
- <footer class="footer-section">
+<!-- Footer Section -->
+    <footer class="footer-section">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
@@ -743,7 +736,7 @@ h1, h2, h3 {
                         </div>
                         <div class="contact-info">
                             <h6>Email</h6>
-                            <p>hello@kookie.ph w/ link</p>
+                            <p><a href="https://mail.google.com/mail/u/0/#inbox?compose=new" target="_blank" rel="noopener noreferrer">kookie@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -765,7 +758,9 @@ h1, h2, h3 {
                             <i class="bi bi-geo-alt-fill"></i>
                         </div>
                         <div class="contact-info">
-                            <p class="loc">Pantaleon del Rosario St, Cebu City, 6000 Cebu</p>
+                            <p class="loc">
+                                <a href="https://maps.app.goo.gl/HfPAoDmhUSkABZmf7" target="_blank" rel="noopener noreferrer">Pantaleon del Rosario St, Cebu City, 6000 Cebu</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -776,13 +771,13 @@ h1, h2, h3 {
                         <a href="https://web.facebook.com/kookie.56126" target="_blank" rel="noopener noreferrer" class="social-btn social-fb" aria-label="Facebook">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn social-ig" aria-label="Instagram">
+                        <a href="instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn social-ig" aria-label="Instagram">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn social-x" aria-label="Twitter">
+                        <a href="twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn social-x" aria-label="Twitter">
                             <i class="bi bi-twitter"></i>
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn social-tiktok" aria-label="TikTok">
+                        <a href="tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn social-tiktok" aria-label="TikTok">
                             <i class="bi bi-tiktok"></i>
                         </a>
                     </div>
@@ -791,16 +786,9 @@ h1, h2, h3 {
 
             <div class="footer-bottom text-center">
                 <p class="mb-3">© 2025 Kookie. All rights reserved.</p>
-                <div>
-                    <!--need smthng to goto-->
-                    <a href="#">Sitemap</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
             </div>
         </div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>

@@ -1,7 +1,7 @@
         :root{
             --pink: #ff007f; /* Primary Accent */
             --light-pink: #ffb6d2; /* Soft Pink Highlight */
-            --bg: #fffafc; /* Light Pink Background */
+            --bg: white; /* Light Pink Background */
             --panel-bg: #ffffff; /* Panel/Section Background */
             --muted-rose: #7b3c4f; /* Muted Dark Rose */
             --dark-text: #381c25; 
