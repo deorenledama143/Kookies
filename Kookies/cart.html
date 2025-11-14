@@ -36,7 +36,7 @@
           </div>
         </div>
 
-        <!-- Right area: search -->
+        <!-- Right area: search
         <div class="right-area">
           <div class="search-pill" role="search">
             <input type="search" id="productSearch" placeholder="Search products">
@@ -44,7 +44,7 @@
               <img src="images/search.png" alt="Search"  class="search-icon">
             </button>
           </div>
-        </div>
+        </div>  -->
 
       </div>
     </header>
@@ -58,7 +58,7 @@
         <div class="label-product">
           <img src="images/store.png" alt="Shop Icon" class="shop-icon">
           <span class="label-title">Kookie</span>
-          <img src="images/visit.png" alt="Arrow" class="arrow-icon">
+          
         </div>
 
         <div class="label-quantity">Quantity</div>
@@ -68,9 +68,9 @@
     </section>
 
     <!-- ORDER LIST -->
-    <div class="order-list">
+    <div class="order-list" id="orderList">
      
-      <section class="order-row">
+       <!--<section class="order-row">
         <div class="order-inner">
           <div class="order-select">
             <input type="checkbox" class="item-checkbox">
@@ -117,9 +117,11 @@
             <img src="images/delete.png" alt="Delete" class="delete-icon">
           </div>
         </div>
-      </section>
+      </section>// -->
+
     </div>
   </main>
+
 
   <!-- CART SUMMARY SECTION -->
   <section class="cart-summary">
@@ -136,42 +138,102 @@
 
       <span id="appliedVoucherText" class="applied-voucher-text"></span>
 
-      <div class="cart-total">
-        <span>Total Amount:</span>
-        <span id="grandTotal">₱0.00</span>
-      </div>
 
-      <!-- Select/Delete/Checkout Row -->
+     <div class="cart-total">
+  <div class="total-amount">
+    <span>Total Amount:</span>
+    <span id="grandTotal">₱0.00</span>
+  </div>
+  <button id="checkoutBtn" class="checkout-btn">Checkout(0)</button>
+</div>
+
+  
+      
+
+
+      <!-- Select/Delete/Checkout Row
       <div class="summary-bottom">
         <div class="summary-left">
           <input type="checkbox" id="select-all">
           <label for="select-all">Select All</label>
           <button class="delete-all-btn">Delete All</button>
-        </div>
+        </div>  -->
 
-        <div class="summary-right">
-          <button class="checkout-btn">Checkut(0)</button>
-        </div>
+       
       </div>
     </div>
   </section>
 
   <!-- VOUCHER MODAL -->
-  <div id="voucherModal" class="voucher-modal">
-    <div class="voucher-modal-content">
-      <h3>Select a Voucher.</h3>
-      <label><input type="radio" name="voucher" value="₱10"> ₱10 OFF</label><br>
-      <label><input type="radio" name="voucher" value="₱20"> ₱20 OFF</label><br>
-      <label><input type="radio" name="voucher" value="₱50"> Free Shipping (₱50 OFF)</label><br>
+  <!-- Voucher Modal -->
+<div id="voucherModal" class="voucher-modal" style="display:none; position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); z-index:10000; align-items:center; justify-content:center;">
+  <div class="voucher-modal-content" style="background:#fff; border-radius:8px; box-shadow:0 0 15px rgba(0,0,0,0.2); width:320px; padding:20px;">
+    <h3 style="margin-bottom:1rem; font-weight:bold; text-align:center;">Select a Voucher</h3>
+    <form id="voucherForm" style="display:flex; flex-direction: column; gap:0.8rem; font-size: 0.95rem;">
+      <label style="cursor:pointer;">
+        <input type="radio" name="voucher" value="10" style="margin-right:0.6rem;"> ₱10 OFF
+      </label>
+      <label style="cursor:pointer;">
+        <input type="radio" name="voucher" value="20" style="margin-right:0.6rem;"> ₱20 OFF
+      </label>
+      <label style="cursor:pointer;">
+        <input type="radio" name="voucher" value="50" style="margin-right:0.6rem;"> Free Shipping (₱50 OFF)
+      </label>
+    </form>
 
-      <div class="voucher-actions">
-        <button id="applyVoucherBtn">Apply Voucher</button>
-        <button id="closeVoucherBtn">Cancel</button>
-      </div>
+    <div style="margin-top:1.5rem; display:flex; justify-content: space-between;">
+      <button id="closeVoucherBtn" style="background:#eee; border:none; padding:8px 16px; border-radius:5px; cursor:pointer;">Cancel</button>
+      <button id="applyVoucherBtn" style="background:#ff66a8; color:#fff; border:none; padding:8px 16px; border-radius:5px; cursor:pointer;">Apply Voucher</button>
     </div>
   </div>
+</div>
 
-  
+
+
+  <script>
+// Function to update the cart row with data from localStorage
+function loadCartFromStorage() {
+  const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  if (cart.length > 0) {
+    const item = cart[0]; // Assuming single item for now; take the first one
+    const row = document.querySelector('.order-row');
+    if (row) {
+      // Update image
+      const img = row.querySelector('.product-img');
+      img.src = item.image;
+      img.alt = item.name;
+
+      // Update name
+      const nameEl = row.querySelector('.product-name');
+      nameEl.textContent = item.name;
+
+      // Update price
+      const priceEl = row.querySelector('.product-price');
+      priceEl.textContent = `₱${item.price.toFixed(2)}`;
+
+      // Update quantity and total (assuming qty=1 initially)
+      const qtyInput = row.querySelector('.qty-input');
+      qtyInput.value = item.qty;
+      const totalEl = row.querySelector('.order-total');
+      totalEl.textContent = `₱${(item.price * item.qty).toFixed(2)}`;
+
+      // Set dropdown to match the product
+      const dropdown = row.querySelector('.variation-dropdown');
+      const option = Array.from(dropdown.options).find(opt => opt.value === item.name);
+      if (option) {
+        dropdown.value = item.name;
+      }
+
+      // Call any existing total update functions (from product.js)
+      if (typeof updateGrandTotal === 'function') updateGrandTotal();
+      if (typeof updateCheckoutCount === 'function') updateCheckoutCount();
+    }
+  }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', loadCartFromStorage);
+</script>
 
   <!-- ✅ JS FILE -->
   <script src="product.js"></script>

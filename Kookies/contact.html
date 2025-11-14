@@ -9,41 +9,50 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="contact.css" />
+  <link rel="stylesheet" href="navigation.css"/>
 </head>
+
+<style>
+  .navbar {
+            background: url("Images/nav-background.png");
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+              padding: 0.75rem 1rem;
+        }
+
+</style>
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <div>
-        <img src="Images/Logo.png" alt="KOOKIE Logo" width="120">
-          <small>fresh daily • bake with love</small>
+ <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="d-flex flex-column align-items-start">
+                    <img src="Images/Logo.png" alt="KOOKIE Logo" width="120"> 
+                    <small>fresh daily • bake with love</small>
+                </div>
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="home.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="index.html">SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="e.html">ABOUT</a></li> 
+                    <li class="nav-item"><a class="nav-link fw-bold active" href="#">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center">
+                
+                <a href="cart.html" class="icon-btn position-relative" id="cartIconLink">
+                    <i class="bi bi-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count" style="font-size: 0.65em; padding: 0.3em 0.5em; display: none;">0</span>
+                </a>
+               
+            </div>
         </div>
-      </a>
-
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-          <li class="nav-item"><a class="nav-link fw-bold " href="home.html">HOME</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="index.html">SHOP</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="e.html">ABOUT</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold active" href="contact.html">CONTACT</a></li>
-        </ul>
-      </div>
-
-      <div class="d-flex align-items-center">
-        <div class="search-container">
-          <i class="bi bi-search"></i>
-          <input type="text" placeholder="Search cookies" />
-        </div>
-        <button class="icon-btn"><i class="bi bi-heart"></i></button>
-        <button class="icon-btn position-relative"><i class="bi bi-cart"></i></button>
-        <button class="login-btn">Login</button>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
 
 

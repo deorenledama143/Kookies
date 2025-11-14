@@ -1,0 +1,75 @@
+        :root{
+            --pink: #ff007f; /* Primary Accent */
+            --light-pink: #ffb6d2; /* Soft Pink Highlight */
+            --bg: #fffafc; /* Light Pink Background */
+            --panel-bg: #ffffff; /* Panel/Section Background */
+            --muted-rose: #7b3c4f; /* Muted Dark Rose */
+            --dark-text: #381c25; 
+            --secondary-accent: #e75480;
+            --card-shadow: 0 10px 25px rgba(255,182,193,0.35);
+        }
+
+        /* ---------- GENERAL & BODY ---------- */
+        body {
+            background-color: var(--bg);
+            color: var(--dark-text);
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .text-pink { color: var(--pink); }
+        .bg-pink { background-color: var(--pink) !important; }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            background: url("Images/nav-background.png"); 
+            background-color: var(--panel-bg); /* Fallback color */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            padding: 0.75rem 1rem;
+        }
+
+        .navbar-brand small {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 700;
+        }
+
+        .navbar-nav .nav-link {
+            color: #333 !important;
+            font-weight: 600;
+            margin: 0 12px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link.active {
+            background-color: var(--light-pink);
+            border-radius: 10px;
+            color: var(--pink) !important;
+            transform: translateY(0);
+        }
+        .navbar-nav .nav-link:hover{
+            background-color: var(--light-pink);
+            border-radius: 10px;
+            color: var(--pink) !important;
+            box-shadow: 4px 5px 10px rgba(0,0,0,0.63);
+            transform: translateY(-5px);
+        }
+                
+
+        .search-container { position: relative; margin-right: 10px; }
+        .search-container input {
+            border-radius: 20px; 
+            border: 1px solid var(--light-pink);
+            padding: 6px 15px 6px 35px; 
+            font-size: 0.9rem; 
+            width: 200px;
+            transition: border-color 0.3s;
+        }
+        .search-container input:focus {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 0.1rem var(--light-pink);
+        }
+        .search-container i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #888; }
+        .icon-btn { background: transparent; border: none; font-size: 1.3rem; color: var(--pink); margin-left: 8px; }
+       

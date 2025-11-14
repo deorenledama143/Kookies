@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+  <div class="checkout-container">
+    <header class="checkout-header">
+      <button id="backBtn" class="back-btn" aria-label="Go back">
+        <img src="images/Back.png" alt="Back" class="icon-img" />
+      </button>
+      <h1>Checkout Summary</h1>
+    </header>
+
+    <!-- DELIVERY ADDRESS SECTION -->
+    <section class="delivery-address">
+      <div class="address-header">
+        <img src="images/address.png" alt="Location" class="address-icon" />
+        <span class="address-label">Delivery Address</span>
+      </div>
+      <p class="address-text">
+        James Ryan Labra (+63) 985 080 2320 Sambag 2, Inoburan City of Naga, Inoburan, 
+        Naga City, Visayas, Cebu 6037
+      </p>
+    </section>
+
+    <!-- ORDER SUMMARY -->
+    <div class="order-summary">
+      <h2>Your Orders</h2>
+      <ul id="orderList" class="checkout-items">
+        <!-- Populated dynamically -->
+      </ul>
+    </div>
+
+    <!-- PAYMENT METHOD -->
+    <div class="payment-methods">
+      <h3>Select Payment Method</h3>
+      <label>
+        <input type="radio" name="payment" value="credit_card" /> Credit Card
+      </label><br />
+      <label>
+        <input type="radio" name="payment" value="gcash" /> Gcash
+      </label><br />
+      <label>
+        <input type="radio" name="payment" value="cod" /> Cash on Delivery
+      </label>
+    </div>
+
+    <!-- PRICE SUMMARY -->
+    <div class="price-summary">
+      <div class="row">
+        <span>Subtotal:</span>
+        <span id="subtotal">₱0.00</span>
+      </div>
+      <div class="row">
+        <span>Voucher Discount:</span>
+        <span id="voucherDiscount">₱0.00</span>
+      </div>
+      <div class="row total">
+        <span>Total:</span>
+        <span id="finalTotal">₱0.00</span>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button id="confirmOrderBtn" class="confirm-btn">Place Order</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div id="successModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+    <div class="modal-content" style="background:#fff; padding:2rem; border-radius:8px; text-align:center;">
+      <img src="Images/orderplaced.png" alt="Success" class="modal-icon" />
+      <h2>Your order has been placed. Thank you!</h2>
+      <button id="okBtn" class="ok-btn">Close</button>
+    </div>
+  </div>
+
+  <script src="checkout.js"></script>
+</body>
+</html>

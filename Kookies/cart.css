@@ -106,42 +106,7 @@ body {
   align-items: center;
 }
 
-.search-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #fff0f6;
-  padding: 8px 12px;
-  border-radius: 28px;
-  border: 1px solid rgba(255,150,175,0.48);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-}
 
-.search-pill input[type="search"] {
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 18px;
-  color: var(--muted-text);
-  width: 240px;
-  padding: 4px 2px;
-}
-
-.search-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
 
 .highlight {
   border: 2px solid #f39c12;
@@ -178,6 +143,7 @@ body {
   font-weight: 600;
   color: #5b2f36;
   font-size: 15px;
+  
 }
 
 
@@ -221,7 +187,7 @@ order-row {
   max-width: 1150px;
   margin: 0 auto; 
   position: relative;
-  top: -4px;
+  top: -1px;
 }
 /* Make order rows visually match */
 
@@ -316,14 +282,15 @@ order-row {
 }
 
 .qty-btn {
-  border: none;
-  background: transparent;
   cursor: pointer;
-  padding: 4px;
+  width: 20px; /* or your preferred size */
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 5px;
 }
 .qty-btn img {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
 }
 .qty-input {
@@ -346,9 +313,11 @@ order-row {
 
 /* Delete icon */
 .order-delete {
-  display: flex;
-  justify-content: center;
-  margin-left: -30px; /* ✅ replaced transform */
+ cursor: pointer;
+  width: 20px; /* or your preferred size */
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 5px; /* ✅ replaced transform */
 }
 
 .delete-icon {
@@ -361,6 +330,7 @@ order-row {
   transform: scale(1.15) rotate(8deg);
 }
 /* ================= CART SUMMARY SECTION ================= */
+
 
 .cart-summary {
   width: 100%;
@@ -408,8 +378,8 @@ order-row {
   width: 100%;           /* so we can right-align it */
   text-align: right;     /* pushes it to the rightmost part */
   margin-top: 4px;       /* small gap below underline */
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   color: #5b2f36;
   font-weight: 600;
   padding-top: 10px;
@@ -484,17 +454,17 @@ order-row {
   transform: scale(1.05);
 }
 .cart-total{
-  display: block;
-  width: 100%;           /* so we can right-align it */
-  text-align: right;     /* pushes it to the rightmost part */
-  margin-top: 4px;       /* small gap below underline */
-  font-size: 14px;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;   /* Stack vertically */
+  align-items: flex-end;    /* Align everything to the right */
+  gap: 5px;                /* space between total and button */
+  padding-right: 20px;      /* space from right */
   color: #5b2f36;
   font-weight: 600;
-  padding-top: 10px;
-  padding-right: 12px;  
+  font-size: 16px;
+   
 }
+
 /* Right side: Total + Checkout */
 .summary-right {
   display: flex;
@@ -525,6 +495,7 @@ order-row {
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
+   margin-top: 8px;
 }
 .checkout-btn:hover {
   background: #ff518c;
@@ -569,6 +540,9 @@ order-row {
   font-weight: 700;
   cursor: pointer;
 }
+
+
+/* ================= BAG O ADDD ================= */
 
 
 /* ================= RESPONSIVE ================= */

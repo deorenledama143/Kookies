@@ -1,0 +1,213 @@
+        /* NOTE: Assuming SuperSunday-vn3MA.ttf and Logo.png/nav-background.png are in the correct relative paths */
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('../Kookies/SuperSunday-vn3MA.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+
+        /* 🌸 PRODUCT CARDS */
+        .product-card {
+            border: none;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(255, 0, 128, 0.15);
+        }
+
+        .product-card img {
+            border-radius: 20px 20px 0 0;
+            height: 240px;
+            width: 100%; /* Added to ensure full width */
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .best-seller-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--pink);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-pink {
+            background-color: var(--pink);
+            color: white;
+            font-size: 0.85rem;
+            border-radius: 10px;
+            transition: 0.3s;
+            border: 1px solid var(--pink); 
+        }
+        .add-btn, .view-btn{
+            margin: 20px;
+            height: 2rem;
+            font-size: 13px;
+            
+        }
+        .btn-pink:hover {
+            background-color: var(--secondary-accent);
+            color: white;
+            border: 1px solid var(--secondary-accent);
+        }
+
+        .btn-light-pink {
+            background-color: #ffe6f2;
+            color: var(--pink);
+            font-size: 0.85rem;
+            border-radius: 10px;
+            transition: 0.3s;
+            border: 1px solid #ffe6f2;
+        }
+        .btn-light-pink:hover {
+            background-color: var(--light-pink);
+            border: 1px solid var(--light-pink);
+        }
+
+        #productRow { padding: 20px 0;}
+        #searchInput{ width: 40rem;}
+        @media (min-width: 1200px) { 
+            .col-xl-3 {
+                flex: 0 0 auto;
+                width: 25%;
+            }
+        }
+        
+        /* 🌸 LIST VIEW OVERRIDES */
+        .list-view .col-lg-12 { flex: 0 0 100%; max-width: 100%;}
+        .list-view .product-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-align: left;
+            height: auto;
+            padding: 10px;
+        }
+
+        .list-view .product-card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            border-radius: 12px; /* Uniform radius for list view */
+        }
+        
+        .list-view .card-img-top {
+            border-radius: 12px !important; 
+        }
+
+        /* Adjust card-body content for list view */
+        .list-view .card-body {
+            flex-grow: 1;
+            display: grid;
+            grid-template-areas: 
+                "name price"
+                "category rating"
+                "desc desc"
+                "actions actions";
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 5px 15px;
+        }
+        
+        .list-view .card-body h6 { grid-area: name; }
+        .list-view .card-body .fs-5 { grid-area: price; }
+        .list-view .card-body .text-pink { grid-area: category; }
+        .list-view .card-body .mb-2 { grid-area: rating; justify-self: end; }
+        .list-view .card-body .text-muted { grid-area: desc; margin-bottom: 10px !important; }
+        .list-view .card-body .mt-auto { grid-area: actions; margin-top: 0 !important; }
+        .list-view .product-card .best-seller-badge { top: 25px; left: 25px; right: auto; }
+        
+
+        /* Modal*/
+        .modal-content {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-img-col {
+            padding: 0;
+        }
+        
+        #modalImg {
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px 0 0 18px;
+        }
+
+        .rating-stars {
+            color: gold;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile adjustments for the Modal */
+        @media (max-width: 992px) {
+            #modalImg {
+                height: 250px;
+                width: 100%;
+                border-radius: 18px 18px 0 0;
+            }
+            .modal-img-col {
+                padding: 1rem !important;
+            }
+            #categoryFilter{
+                width: 15rem
+            }
+            #searchInput{
+                width: 20.2rem;
+            }
+            #sortSelect{
+                width: 20.2rem;
+            }
+        }
+       
+        .view-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .view-controls select {
+            border-radius: 20px;
+            padding: 6px 14px;
+            border: 1px solid var(--light-pink);
+            color: var(--pink);
+            font-weight: 500;
+            
+        }
+        .view-toggle button {
+            background: #ffe6f2;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 10px;
+            color: var(--pink);
+            transition: 0.3s;
+        }
+        .view-toggle button.active {
+            background: var(--pink);
+            color: white;
+        }

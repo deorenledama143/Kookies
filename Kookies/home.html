@@ -9,42 +9,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   
     <link rel="stylesheet" href="homestyle.css" />
+    <link rel="stylesheet" href="navigation.css">
 </head>
 <body>
     <!-- Navigation Bar-->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <div>
-        <img src="Images/Logo.png" alt="KOOKIE Logo" width="120">
-          <small>fresh daily • bake with love</small>
+ <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="d-flex flex-column align-items-start">
+                    <img src="Images/Logo.png" alt="KOOKIE Logo" width="120"> 
+                    <small>fresh daily • bake with love</small>
+                </div>
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+                    <li class="nav-item"><a class="nav-link fw-bold active" href="#">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="index.html">SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="e.html">ABOUT</a></li> 
+                    <li class="nav-item"><a class="nav-link fw-bold" href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center">
+                
+                <a href="cart.html" class="icon-btn position-relative" id="cartIconLink">
+                    <i class="bi bi-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count" style="font-size: 0.65em; padding: 0.3em 0.5em; display: none;">0</span>
+                </a>
+               
+            </div>
         </div>
-      </a>
-
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-          <li class="nav-item"><a class="nav-link fw-bold active" href="#">HOME</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="index.html">SHOP</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="e.html">ABOUT</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="contact.html">CONTACT</a></li>
-        </ul>
-      </div>
-
-      <div class="d-flex align-items-center">
-        <div class="search-container">
-          <i class="bi bi-search"></i>
-          <input type="text" placeholder="Search cookies" />
-        </div>
-        <button class="icon-btn"><i class="bi bi-heart"></i></button>
-        <button class="icon-btn position-relative"><i class="bi bi-cart"></i></button>
-        <button class="login-btn">Login</button>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
   <!-- Waves Divider -->
 <!--
@@ -109,7 +109,7 @@ Grab a cookie <i> or a dozen </i> and make today a little sweeter.</p>
                             <div class="cookie-content">
                                <h5 class="cookie-title">Red Velvet</h5>
                                <p class="cookie-desc">Soft red velvet cookies loaded with white chocolate chips&mdash; sweet, rich, and irresistibly festive.</p>
-                               <button class="btn-order">Order Now</button>
+                                <a href="index.html"><button class="btn-order">Order Now</button></a>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ Grab a cookie <i> or a dozen </i> and make today a little sweeter.</p>
                             <div class="cookie-content">
                                <h5 class="cookie-title">Monday Blue Cookie</h5>
                                <p class="cookie-desc">Bright blue cookies packed with Oreos, peanut butter chips, and white chocolate for the ultimate flavor party.</p>
-                               <button class="btn-order">Order Now</button>
+                                <a href="index.html"><button class="btn-order">Order Now</button></a>
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ Grab a cookie <i> or a dozen </i> and make today a little sweeter.</p>
                             <div class="cookie-content">
                                <h5 class="cookie-title">Brk Cookie</h5>
                                <p class="cookie-desc">Can't decide? Get both! Half chocolate brownie, half chocolate chip cookie in one indulgent treat.</p>
-                               <button class="btn-order">Order Now</button>
+                                <a href="index.html"><button class="btn-order">Order Now</button></a>
                             </div>
                         </div>
                     </div>
@@ -293,6 +293,26 @@ Designed with warmth and sweetness in mind, it offers a cozy shopping experience
                 btn.classList.remove('show');
             }
         };
+
+       // Function to update the cart count badge on home.html
+function updateCartCount() {
+  // Load cart from localStorage (same as in cart.js)
+  const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  
+  // Calculate total quantity (sum of all item.qtys)
+  const totalItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  
+  // Update the badge element (matches your HTML ID: cart-count)
+  const cartCountEl = document.getElementById('cart-count');
+  if (cartCountEl) {
+    cartCountEl.textContent = totalItems;
+    cartCountEl.style.display = totalItems > 0 ? 'inline-block' : 'none';  // Show if > 0, hide if 0
+  }
+}
+
+// Call on page load to set the initial count
+document.addEventListener('DOMContentLoaded', updateCartCount);
+
     </script>
     </body>
 </html>
